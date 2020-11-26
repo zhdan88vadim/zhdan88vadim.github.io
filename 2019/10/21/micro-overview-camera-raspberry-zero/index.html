@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="overview-china,camera,raspberry-pi">
+    
+    <meta name="description" content="Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства">
+<meta property="og:url" content="/2019/10/21/micro-overview-camera-raspberry-zero/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-28-27.png">
+<meta property="og:updated_time" content="2020-11-15T13:09:14.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства">
+<meta name="twitter:description" content="Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства">
+<meta name="twitter:image" content="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-28-27.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Overview-china/">Overview-china</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Overview-china/electricity/">electricity</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-overview-camera-raspberry-zero" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/10/21/micro-overview-camera-raspberry-zero/" class="article-date">
+            <time datetime="2019-10-21T14:28:04.000Z" itemprop="datePublished">2019-10-21</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/camera/">camera</a>, <a class="tag-link" href="/tags/overview-china/">overview-china</a>, <a class="tag-link" href="/tags/raspberry-pi/">raspberry-pi</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>Задача:</strong>  </p>
+<p>Сделать камеру дешевле 70$, с возможностью отправлять фото полученные по обнаружению движения <strong>прямо в облако</strong>.</p>
+<p><strong>История</strong> </p>
+<p>Проведя обзор, пришло понимание, что вроде бы и простая задача, но готовых решений, которые можно гибко настраивать за цену меньше 70$ нету.
+Есть желание проверить, что может получиться из связки Raspberry ZERO и motioneyeos.</p>
+<p><strong>Пожелание:</strong>  </p>
+<ol>
+<li>Отправка фото на гугл диск</li>
+<li>.</li>
+<li>…</li>
+<li>….</li>
+<li>.</li>
+<li>Ждущий режим при питании от аккумулятора, и пробуждение по ИК и\или радио сигналу</li>
+<li>Кнопка выключить камеру (чтобы можно было выключить не только через веб-интерфейс камеры)</li>
+</ol>
+<h2 id="Фото-платы-с-камерой"><a href="#Фото-платы-с-камерой" class="headerlink" title="Фото платы с камерой"></a>Фото платы с камерой</h2><p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-28-27.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-29-01.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-30-11.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-31-02.png" alt="Пример фото ночной съемки"></p>
+<h2 id="Установка-motioneyeos-в-качестве-операционной-системы"><a href="#Установка-motioneyeos-в-качестве-операционной-системы" class="headerlink" title="Установка motioneyeos в качестве операционной системы"></a>Установка motioneyeos в качестве операционной системы</h2><p><a href="https://github.com/ccrisan/motioneyeos/wiki/Installation" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/wiki/Installation</a></p>
+<p><strong>Сперва по ошибке скачал файл для RP 3, посчитав, что ZERO версия полный аналог большой Raspberry 3, но не стартанула система, скачав правильный файл, распаковав, 
+и прошив - операционная система загрузилась.</strong></p>
+<p><em>Непонятным остатается, то что в главном меню не отображается прямая трансляция с камеры. 
+Для обычной распбере там было изображение.</em></p>
+<p>Загружаем last version, это архив, нужно сперва будет распокавать, получим файл такого плана 
+motioneyeos-raspberrypi-20190427.img</p>
+<p>A Video Surveillance OS For Single-board Computers
+<a href="https://github.com/ccrisan/motioneyeos/releases/tag/20190911" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/releases/tag/20190911</a> </p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-38-52.png" alt="Скачиваем и прошиваем"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-38-09.png" alt="Название архива говорит, что он для Raspberry Pi 3, для ZERO качаем другой файл"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-38-29.png" alt="Название архива говорит, что он для Raspberry Pi 3, для ZERO качаем другой файл"></p>
+<h2 id="Корпус"><a href="#Корпус" class="headerlink" title="Корпус"></a>Корпус</h2><p>Так как тестирование планируется долгим, чтобы плата не покрылась изрядно пылью, подбираем корпус из доступных вариантов распаячных коробок.</p>
+<p>Практика показала, что <strong>радиатор</strong> на процесор нужно ставить <strong>обязательно</strong>, плюсом могут стать дополнительные отверстия под вентиляцию.</p>
+<span class="my-gallery">
+
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-19-35_box_title.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-19-35_box_1.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-19-35_box_0.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-19-35_fixed_camera.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-19-35_fixed_inner.png" alt></p>
+</span>
+
+<div style="clear: both;"></div>
+
+
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-04-32.png" alt></p>
+<h2 id="Замеры-потребляемого-тока"><a href="#Замеры-потребляемого-тока" class="headerlink" title="Замеры потребляемого тока"></a>Замеры потребляемого тока</h2><p>Видим, что подсветка потребляет часть энергии. Потребление постоянно меняется +- 15 мА можно смело учитывать.</p>
+<span class="my-gallery">
+
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-05-32_curent_night.png" alt="Потребление с подсветкой = 0.63 А"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-21_13-05-32_curent_day.png" alt="Потребление на свету, подсветка в минимум = 0.40 А"></p>
+</span>
+
+<div style="clear: both;"></div>
+
+
+<table>
+<thead>
+<tr>
+<th>Напряжение</th>
+<th>Ток</th>
+<th>Условия</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>5v</td>
+<td>0.63 А</td>
+<td>Ночь</td>
+</tr>
+<tr>
+<td>5v</td>
+<td>0.40 А</td>
+<td>День</td>
+</tr>
+</tbody></table>
+<h2 id="Доступные-настройки-веб-интерфейса"><a href="#Доступные-настройки-веб-интерфейса" class="headerlink" title="Доступные настройки веб интерфейса"></a>Доступные настройки веб интерфейса</h2><p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos_bug0.png" alt="На полной версии raspberry pi 3 здесь отображался текущий вид с камеры, сейчас пусто, что странно"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos.png" alt="По умопчанию вводим имя admin и поле пароль оставляем пустым"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos1.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos2.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos3.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos4.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos5.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos6.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos7.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos8.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos9.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_21-19-54_motionos10.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_22-24-22_gallery.png" alt></p>
+<p>Мини тест, смотрим время за которое будет получена картинка с настройками приближенным к максимальному качеству  </p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_22-01-48_test_time_0.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-26_22-02-35_test_settings_0.png" alt></p>
+<p>Фото интерфейса с оф. сайта<br><a href="https://github.com/ccrisan/motioneyeos/wiki/Screenshots" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/wiki/Screenshots</a>  </p>
+<h2 id="Подключение-по-SSH"><a href="#Подключение-по-SSH" class="headerlink" title="Подключение по SSH"></a>Подключение по SSH</h2><p>Почитав оф.источники видем, что операционная система сильно урезана, 
+если планируем помимо камеры еще что-то запускать на Raspberry, то советуют ставить motioneye в виде приложения.</p>
+<p><a href="https://github.com/ccrisan/motioneyeos/wiki/FAQ#command-line--shell-access" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/wiki/FAQ#command-line--shell-access</a></p>
+<blockquote>
+<p>Command Line &amp; Shell Access
+How can I log in on SSH/TTY console?
+motionEyeOS listens on the standard port 22, if you want to use SSH. Use root or admin as username (admin is just an alias for root) and the password that you set for the administrator in the web UI. By default (when the administrator’s password is empty), you won’t be prompted for a password.</p>
+</blockquote>
+<blockquote>
+<p>I can’t seem to find apt-get or any other package manager. What gives?
+motionEyeOS is not a general-purpose Linux distribution. You can’t install packages like you do with a normal distro. If you need to further customize your setup, installing motionEye on a common distro is recommended.</p>
+</blockquote>
+<hr>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-29-10-46-21_zero_camera_ssh.png" alt="Подключаемся к камере"></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-29-10-58-24_ssh_photo_folder.png" alt="Фото сделаные камерой лежат здесь"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@Cambot01 ~]<span class="comment"># ls /data/output/Camera1/</span></span><br><span class="line">2016-10-08/ 2016-10-09/</span><br></pre></td></tr></table></figure>
+
+<p>Полезные ссылки:  </p>
+<p>Where is the video log?<br><a href="https://github.com/ccrisan/motioneyeos/issues/556" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/issues/556</a>  </p>
+<p>SSH Client On motionEyeOS<br><a href="https://github.com/ccrisan/motioneyeos/wiki/SSH-Client-On-motionEyeOS" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/wiki/SSH-Client-On-motionEyeOS</a></p>
+<h2 id="Установка-motioneyeos-как-простое-приложение-для-Raspbian-OS"><a href="#Установка-motioneyeos-как-простое-приложение-для-Raspbian-OS" class="headerlink" title="Установка motioneyeos как простое приложение для Raspbian OS"></a>Установка motioneyeos как простое приложение для Raspbian OS</h2><p>??????????????????????????????????????<br>Над этим идет работа, а пока все<br>??????????????????????????????????????  </p>
+<p><a href="https://www.umpah.net/raspberry-pi-security-cam-installing-motioneye/" target="_blank" rel="noopener">https://www.umpah.net/raspberry-pi-security-cam-installing-motioneye/</a>  </p>
+<p><a href="https://github.com/ccrisan/motioneye/wiki/Install-On-Raspbian" target="_blank" rel="noopener">https://github.com/ccrisan/motioneye/wiki/Install-On-Raspbian</a>  </p>
+<p>RaspberryPI models comparison<br><a href="http://socialcompare.com/en/comparison/raspberrypi-models-comparison" target="_blank" rel="noopener">http://socialcompare.com/en/comparison/raspberrypi-models-comparison</a>  </p>
+<p>Hardware acceleration / Low framerate<br><a href="https://github.com/ccrisan/motioneyeos/issues/1313" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/issues/1313</a>  </p>
+<blockquote>
+<p>The Pi3 works great and is showing around 10/10 fps in the overlay. The pi zero is showing around 4/1 fps in the overlay.</p>
+</blockquote>
+<p>Low Frame rate on Pi Zero W<br><a href="https://github.com/ccrisan/motioneyeos/issues/1021" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/issues/1021</a><br><a href="https://github.com/ccrisan/motioneyeos/issues/1548" target="_blank" rel="noopener">https://github.com/ccrisan/motioneyeos/issues/1548</a>  </p>
+<p>Hardware acceleration<br>h264/omx<br>No live-stream and close your web browser connection as it loads the CPU.  </p>
+<p><a href="https://github.com/ccrisan/motioneye/wiki/Action-Buttons" target="_blank" rel="noopener">https://github.com/ccrisan/motioneye/wiki/Action-Buttons</a></p>
+<p>UPDATE:</p>
+<p>После продолжительного теста было замечено, что через сутки камера могла не показывать фото, админка приложения грузилась, но вместо фото был просто черный экран,
+причины этому могло быть две, <strong>нагрев</strong> и <strong>слабое питание</strong> из-за длинных проводов.
+Камера висит под потолком, если питать 5 вольтами с длинного провода, то напряжение проседает, возможно это и было основной причиной сбойной работы.
+В последнем апдейте решил, еще добавить охлаждения на модуль камеры и на плату распбери пай.
+Так же удлинил провод питания, и чтобы не было просадки напряжения поставил повышающий модуль на 20 вольт от БП, и понижающий до 5 вольт модуль в корпусе камеры.
+В течении уже пяти дней все работает отлично.</p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-12-20_22-06-06__ventilation.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-12-20_22-06-06__ventilation_2.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-12-20_22-06-06__ventilation_3.png" alt></p>
+<p><img src="/2019/10/21/micro-overview-camera-raspberry-zero/2019-12-20_22-06-06__ventilation_4.png" alt></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2019/10/21/micro-overview-camera-raspberry-zero/" data-id="ckhz3iy91002e29tejgwjj97g" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства",
+        "image": "/2019/10/21/micro-overview-camera-raspberry-zero/2019-10-01-17-28-27.png",
+        "keywords": "overview-china camera raspberry-pi",
+        "genre": "Overview-china electricity",
+        "datePublished": "2019-10-21",
+        "dateCreated": "2019-10-21",
+        "dateModified": "2020-11-15",
+        "url": "/2019/10/21/micro-overview-camera-raspberry-zero/",
+        "description": "Задача:  
+Сделать камеру дешевле 70$, с возможностью отправлять фото полученные по обнаружению движения прямо в облако.
+История 
+Проведя обзор, пришло понимание, что вроде бы и простая задача, но гото",
+        "wordCount": 807
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+
+        // this.page.url = '/2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+
+        this.page.identifier = '2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+        this.page.title = 'Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/11/06/programs-useful/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Список полезных программ
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/10/14/micro-avr-atmega8-arduino-ide/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Ссылки - Прошивка atmega8</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Фото-платы-с-камерой"><span class="toc-number">1.</span> <span class="toc-text">Фото платы с камерой</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Установка-motioneyeos-в-качестве-операционной-системы"><span class="toc-number">2.</span> <span class="toc-text">Установка motioneyeos в качестве операционной системы</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Корпус"><span class="toc-number">3.</span> <span class="toc-text">Корпус</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Замеры-потребляемого-тока"><span class="toc-number">4.</span> <span class="toc-text">Замеры потребляемого тока</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Доступные-настройки-веб-интерфейса"><span class="toc-number">5.</span> <span class="toc-text">Доступные настройки веб интерфейса</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Подключение-по-SSH"><span class="toc-number">6.</span> <span class="toc-text">Подключение по SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Установка-motioneyeos-как-простое-приложение-для-Raspbian-OS"><span class="toc-number">7.</span> <span class="toc-text">Установка motioneyeos как простое приложение для Raspbian OS</span></a></li></ol>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2019/10/21/micro-overview-camera-raspberry-zero/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+
+        // this.page.url = '/2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+
+        this.page.identifier = '2019/10/21/micro-overview-camera-raspberry-zero/index.html';
+        this.page.title = 'Камера Raspberry Zero с motioneyeos - Часть 0 - Устанавливаем motioneyeos и делаем корпус для устройства';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

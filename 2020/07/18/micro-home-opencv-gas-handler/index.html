@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Распознаем положение ручек на газовой плите с opencv | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="house,opencv">
+    
+    <meta name="description" content="Распознаем положение ручек на газовой плите с opencv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Распознаем положение ручек на газовой плите с opencv">
+<meta property="og:url" content="/2020/07/18/micro-home-opencv-gas-handler/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Распознаем положение ручек на газовой плите с opencv">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2020/07/18/micro-home-opencv-gas-handler/photo0.png">
+<meta property="og:updated_time" content="2020-07-18T16:04:19.077Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Распознаем положение ручек на газовой плите с opencv">
+<meta name="twitter:description" content="Распознаем положение ручек на газовой плите с opencv">
+<meta name="twitter:image" content="/2020/07/18/micro-home-opencv-gas-handler/photo0.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-home-opencv-gas-handler" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Распознаем положение ручек на газовой плите с opencv
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="article-date">
+            <time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/house/">house</a>, <a class="tag-link" href="/tags/opencv/">opencv</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><img src="/2020/07/18/micro-home-opencv-gas-handler/photo0.png" alt></p>
+<p>Всем привет, и сегодня о попытках сделать добро себе и людям. Сегодня будем искать варианты, как узнать включен газ или нет, чтобы как минимум не забыть что-то на плите. Автоматика это конечно хорошо, но 100 процентов полагаться на нее не стоит, но хорошим дополнением к повседневному быту она может быть.</p>
+<p><strong>История:</strong>  </p>
+<p>Первая реализация моего проекта была по статье на хабре</p>
+<p>Съёмка показаний счетчика на телефон с последующим распознаванием
+<a href="https://habr.com/ru/post/220869/" target="_blank" rel="noopener">https://habr.com/ru/post/220869/</a></p>
+<p>Очень много полезной информации в статье, раньше у меня стоял счетчик похожего образца, и поменяв слегка код, и подкрутив значения - проект завелся. </p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/old_gas_0.png" alt="Фото старого счетчика, не фотошоп, все семерки настоящие"></p>
+<p>Счетчик подобного плана хорош тем, что мелкие значения там часто обновляются и можно узнать, что газ включен даже на минимальный уровень.
+Сейчас пришлось отказаться от большого этого счетчика в пользу мелкого электронного, и там даже импульсный выход есть для снятия показаний, но видимо, чтобы не садить внутренний аккумулятор, это счетчик отправляет события очень редко, если газ на минимум, то может и раз в полчаса будет событие, этого не достаточно.
+Выход вижу такой, смотреть на ручки плиты. Плюс, установив камеру на кухне, можно смотреть на общее состояние кухни, если мощная камера, то и наблюдать за процессом приготовления, или как там вода кипит, не кипит =)</p>
+<h2 id="Дано"><a href="#Дано" class="headerlink" title="Дано"></a>Дано</h2><h3 id="Ручки-плиты"><a href="#Ручки-плиты" class="headerlink" title="Ручки плиты"></a>Ручки плиты</h3><p>Ручки плиты сфотографированные в упор. Черные метки на ручках сделаны специально, в идеале их стоит делать матовым лаком, чтобы не словить блик.
+С камеры под потолком изображение будет другое.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/photo2.png" alt></p>
+<h3 id="Raspberry-Pi-zero-camera"><a href="#Raspberry-Pi-zero-camera" class="headerlink" title="Raspberry Pi zero camera"></a>Raspberry Pi zero camera</h3><p>Камера на RP_zero c запущенным веб-сервисом который по запросу отдает фото в большом разрешении. В начале была прошивка motion ios, но камера спустя время переставала делать фото, и не виделась системой, возможно из-за перегрева.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/camera_rp_zero.png" alt></p>
+<p>Интересно, что сервис этот тоже иногда отваливается. Все проверяется временем, может работать сутки, и потом перестать отвечать, пока есть мысль, что из-за потери
+wifi, теряет айпишник, и затем веб-сервер заново не может стартануть. 
+Пока решил это перезапуском сервиса в crontab.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> picamera</span><br><span class="line"><span class="comment"># from http.server import HTTPServer, BaseHTTPRequestHandler</span></span><br><span class="line"><span class="keyword">from</span> BaseHTTPServer <span class="keyword">import</span> BaseHTTPRequestHandler, HTTPServer</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SimpleHTTPRequestHandler</span><span class="params">(BaseHTTPRequestHandler)</span>:</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">do_GET</span><span class="params">(self)</span>:</span></span><br><span class="line">                self.send_response(<span class="number">200</span>)</span><br><span class="line">                self.send_header(<span class="string">"Content-type"</span>, <span class="string">"image/jpeg"</span>)</span><br><span class="line">                self.end_headers()</span><br><span class="line"></span><br><span class="line">                print(self.path)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> self.path == <span class="string">"/"</span>:</span><br><span class="line"></span><br><span class="line">                        my_stream = io.BytesIO()</span><br><span class="line">                        <span class="keyword">with</span> picamera.PiCamera() <span class="keyword">as</span> camera:</span><br><span class="line">                                camera.vflip = <span class="literal">True</span>;</span><br><span class="line">                                camera.hflip = <span class="literal">True</span>;</span><br><span class="line">                                camera.resolution = (<span class="number">2592</span>, <span class="number">1944</span>)</span><br><span class="line">                                camera.start_preview()</span><br><span class="line">                                time.sleep(<span class="number">2</span>)</span><br><span class="line">                                camera.capture(my_stream, <span class="string">'jpeg'</span>)</span><br><span class="line"></span><br><span class="line">                        self.wfile.write(my_stream.getvalue())</span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                        self.wfile.write(<span class="string">b"Hello world"</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">httpd = HTTPServer((<span class="string">"192.168.100.88"</span>, <span class="number">8888</span>), SimpleHTTPRequestHandler)</span><br><span class="line">httpd.serve_forever()</span><br></pre></td></tr></table></figure>
+
+<h2 id="Способы-распознование"><a href="#Способы-распознование" class="headerlink" title="Способы распознование"></a>Способы распознование</h2><h3 id="1-По-шаблону"><a href="#1-По-шаблону" class="headerlink" title="1 - По шаблону"></a>1 - По шаблону</h3><p>Первый способ был поиск шаблона фото ручки на фото плиты. 
+При должных настройках это работало, но стало видно, что этот способ зависим от яркости изображения.
+Была идея замерять яркость датчиком освещенности, или брать общую яркость фото и выбирать соответствующий шаблон для этой яркости, есть большая вероятность, что это будет работать, но довольно сложно отлаживать.
+Из плюсов имеем, что мы не привязываемся к конкретному пикселю на фото, т.е камеру можно немного сдвинуть, и все будет работать как работало.</p>
+<p>Так же к этому способу добавлял функцию выявления контуров на изображении, но из-за смены освещения в течении дня, контуры получались очень разными, что не давало хорошего результата.</p>
+<h3 id="2-По-пикселям"><a href="#2-По-пикселям" class="headerlink" title="2 - По пикселям"></a>2 - По пикселям</h3><p>Второй способ более простой, это привязка к пикселям, статья, которая решает задачу подобным путем опять нашлась на хабре</p>
+<p><a href="https://habr.com/ru/post/143102/" target="_blank" rel="noopener">https://habr.com/ru/post/143102/</a><br>Распознаём изображение с токена при помощи камеры</p>
+<p>Взяв за основу этот принцип получился рабочий вариант. 
+Теперь камеру нужно жестко закреплять, чтобы со временем полученное изображение не ушло в сторону. 
+Еще минус, что если подвинем плиту во время уборки, тоже программу нужно подстраивать. Или же можно сделать алгоритм поиска ручек адаптивным, привязавшись к контурам плиты.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/photo1.png" alt></p>
+<p>Фото имеет красноватый оттенок, так как это камера без ИК фильтра позволяющая снимать ночью.</p>
+<p>Работает следующем образом, на фото видны прямоугольники, один большой и 5 мелких. Программа всегда смотрит только эти прямоугольные области в не зависимости, от положения ручек плиты. С большого прямоугольника берется общая яркость для значения бекграунда плиты, с маленького берется контрольный участок каждой ручки.
+Так как на ручках есть черный метки, когда газ закрыт, и ручка в своем исходном положении, то яркость этих областей должна быть меньше яркость бекраунда плиты.
+Если ручку сдвинуть, то яркость прямоугольника ответственного за ручку возрастет, и это будет значить, что газ открыт. Так же где ручки открыты, рисуем более жирную рамку.</p>
+<!-- Работает следующем образом, большой прямоугольник это то место, которое мы считаем самым ярким, мы берем всю площадь из пикселей и складываем их вместе. 
+Так как белый цвет имеет значение выше черного, то значение яркости бекграунда должно быть выше яркости ручки. 
+Так как для ручки мы берем прямоугольник, указывающий на черную метку.
+Если ручка сдвинута, то яркость ее становится выше. -->
+
+<p>Пример данных после обработки фото:</p>
+<p>Background = 25866<br>Ручка 1 = 23738<br>Ручка 2 = 28174  &lt;– газ открыт<br>Ручка 3 = 22161<br>Ручка 4 = 24229<br>Ручка 5 = 23925  </p>
+<p>Этот алгоритм отработал в полной темноте, при ИК подсветки самой камеры.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/3.png" alt></p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/4.png" alt></p>
+<p>Немного почитав статей, нашелся способ добавить яркости ночному фото через код.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/5.png" alt></p>
+<p>Тестовый код который был использован на то время.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> sqrt, floor</span><br><span class="line"><span class="keyword">import</span> sched, time</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"></span><br><span class="line"><span class="comment"># pip3 install requests</span></span><br><span class="line"></span><br><span class="line">s = sched.scheduler(time.time, time.sleep)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rotate_image</span><span class="params">(image, angle)</span>:</span></span><br><span class="line">  image_center = tuple(np.array(image.shape[<span class="number">1</span>::<span class="number">-1</span>]) / <span class="number">2</span>)</span><br><span class="line">  rot_mat = cv2.getRotationMatrix2D(image_center, angle, <span class="number">1.0</span>)</span><br><span class="line">  result = cv2.warpAffine(image, rot_mat, image.shape[<span class="number">1</span>::<span class="number">-1</span>], flags=cv2.INTER_LINEAR)</span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_pixels</span><span class="params">(img, x, y, w, h)</span>:</span></span><br><span class="line">    result = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> yy <span class="keyword">in</span> range(y, y + h):</span><br><span class="line">        <span class="keyword">for</span> xx <span class="keyword">in</span> range(x, x + w):</span><br><span class="line">            result += img[yy, xx]</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_something</span><span class="params">(sc)</span>:</span> </span><br><span class="line">    print(<span class="string">"Doing ..."</span>)</span><br><span class="line"></span><br><span class="line">    url = <span class="string">r"http://192.168.100.88:8888/"</span></span><br><span class="line">    resp = requests.get(url, stream=<span class="literal">True</span>).raw</span><br><span class="line">    img_rgb = np.asarray(bytearray(resp.read()), dtype=<span class="string">"uint8"</span>)</span><br><span class="line">    img_rgb = cv2.imdecode(img_rgb, cv2.IMREAD_COLOR)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># img_rgb = cv2.imread('./check_images/check_1593780018.5604236__506__original.jpg')</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># img_rgb = cv2.imread('./night_test_0.jpg')</span></span><br><span class="line"></span><br><span class="line">    original_image = copy.copy(img_rgb)</span><br><span class="line"></span><br><span class="line">    img_rgb = img_rgb[<span class="number">1400</span>:<span class="number">1700</span>, <span class="number">800</span>:<span class="number">1400</span>]</span><br><span class="line">    img_rgb = rotate_image(img_rgb, <span class="number">24</span>)</span><br><span class="line">    img_rgb = img_rgb[<span class="number">150</span>:<span class="number">250</span>,<span class="number">20</span>:<span class="number">440</span>]</span><br><span class="line"></span><br><span class="line">    gray = cv2.cvtColor(img_rgb,cv2.COLOR_BGR2GRAY)</span><br><span class="line"></span><br><span class="line">    sq0 = <span class="number">10</span></span><br><span class="line">    sq1 = <span class="number">15</span></span><br><span class="line"></span><br><span class="line">    back_x = sq0 * <span class="number">34</span></span><br><span class="line">    back_y = sq1 * <span class="number">3</span></span><br><span class="line"></span><br><span class="line">    background = (count_pixels(gray, <span class="number">60</span>, <span class="number">30</span>, back_x, back_y) / <span class="number">34</span> / <span class="number">3</span>) - <span class="number">650</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"background_before"</span>)</span><br><span class="line">    print(background)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> background &lt; <span class="number">10000</span>:</span><br><span class="line">        brightness = <span class="number">200</span></span><br><span class="line">        contrast = <span class="number">100</span></span><br><span class="line">        gray = np.int16(gray)</span><br><span class="line">        gray = gray * (contrast/<span class="number">127</span>+<span class="number">1</span>) - contrast + brightness</span><br><span class="line">        gray = np.clip(gray, <span class="number">0</span>, <span class="number">255</span>)</span><br><span class="line">        gray = np.uint8(gray)</span><br><span class="line">        background = (count_pixels(gray, <span class="number">60</span>, <span class="number">30</span>, back_x, back_y) / <span class="number">34</span> / <span class="number">3</span>) - <span class="number">800</span></span><br><span class="line">        </span><br><span class="line">        print(<span class="string">"background_after"</span>)</span><br><span class="line">        print(background)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    cv2.rectangle(gray, (<span class="number">60</span>, <span class="number">30</span>), (back_x, back_y), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    cfix = <span class="number">-8</span></span><br><span class="line">    c1_p = cfix + <span class="number">61</span></span><br><span class="line">    c2_p = cfix + <span class="number">154</span></span><br><span class="line">    c3_p = cfix + <span class="number">212</span></span><br><span class="line">    c4_p = cfix + <span class="number">275</span></span><br><span class="line">    c5_p = cfix + <span class="number">340</span></span><br><span class="line"></span><br><span class="line">    c1 = count_pixels(gray, c1_p, <span class="number">38</span>, sq0, sq1)</span><br><span class="line">    c2 = count_pixels(gray, c2_p, <span class="number">42</span>, sq0, sq1)</span><br><span class="line">    c3 = count_pixels(gray, c3_p, <span class="number">45</span>, sq0, sq1)</span><br><span class="line">    c4 = count_pixels(gray, c4_p, <span class="number">45</span>, sq0, sq1)</span><br><span class="line">    c5 = count_pixels(gray, c5_p, <span class="number">45</span>, sq0, sq1)</span><br><span class="line"></span><br><span class="line">    count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> c1 &lt; background:</span><br><span class="line">        count = count + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> c2 &lt; background:</span><br><span class="line">        count = count + <span class="number">1</span>       </span><br><span class="line">    <span class="keyword">if</span> c3 &lt; background:</span><br><span class="line">        count = count + <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> c4 &lt; background:</span><br><span class="line">        count = count + <span class="number">1</span>       </span><br><span class="line">    <span class="keyword">if</span> c5 &lt; background:</span><br><span class="line">        count = count + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    cv2.rectangle(gray, (c1_p, <span class="number">38</span>), (c1_p + sq0, <span class="number">38</span> + sq1), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), c1 &lt; background <span class="keyword">and</span> <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>)</span><br><span class="line">    cv2.rectangle(gray, (c2_p, <span class="number">42</span>), (c2_p + sq0, <span class="number">42</span> + sq1), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), c2 &lt; background <span class="keyword">and</span> <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>)</span><br><span class="line">    cv2.rectangle(gray, (c3_p, <span class="number">45</span>), (c3_p + sq0, <span class="number">45</span> + sq1), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), c3 &lt; background <span class="keyword">and</span> <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>)</span><br><span class="line">    cv2.rectangle(gray, (c4_p, <span class="number">45</span>), (c4_p + sq0, <span class="number">45</span> + sq1), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), c4 &lt; background <span class="keyword">and</span> <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>)</span><br><span class="line">    cv2.rectangle(gray, (c5_p, <span class="number">45</span>), (c5_p + sq0, <span class="number">45</span> + sq1), (<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>), c5 &lt; background <span class="keyword">and</span> <span class="number">1</span> <span class="keyword">or</span> <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"background"</span>)</span><br><span class="line">    print(background)</span><br><span class="line">    print(<span class="string">"c1"</span>)</span><br><span class="line">    print(c1)</span><br><span class="line">    print(<span class="string">"c2"</span>)</span><br><span class="line">    print(c2)</span><br><span class="line">    print(<span class="string">"c3"</span>)</span><br><span class="line">    print(c3)</span><br><span class="line">    print(<span class="string">"c4"</span>)</span><br><span class="line">    print(c4)</span><br><span class="line">    print(<span class="string">"c5"</span>)</span><br><span class="line">    print(c5)</span><br><span class="line"></span><br><span class="line">    print(count)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> count != <span class="number">5</span>:</span><br><span class="line">        ts = time.time()</span><br><span class="line">        <span class="comment"># cv2.imwrite('./photos/check_' + str(ts) + '__' + str(color_ligth) + '.jpg', img_rgb)</span></span><br><span class="line">        cv2.imwrite(<span class="string">'./photos/check_'</span> + str(ts) + <span class="string">'__'</span> + str(<span class="number">123</span>) + <span class="string">'__gray.jpg'</span>, gray)</span><br><span class="line">        cv2.imwrite(<span class="string">'./photos/check_'</span> + str(ts) + <span class="string">'__'</span> + str(<span class="number">123</span>) + <span class="string">'__original.jpg'</span>, original_image)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># cv2.imshow("gray", gray)</span></span><br><span class="line">    <span class="comment"># cv2.imshow("output", img_rgb)</span></span><br><span class="line"></span><br><span class="line">    s.enter(<span class="number">60</span>, <span class="number">1</span>, do_something, (sc,))</span><br><span class="line"></span><br><span class="line">s.enter(<span class="number">2</span>, <span class="number">1</span>, do_something, (s,))</span><br><span class="line">s.run()</span><br><span class="line"></span><br><span class="line"><span class="comment"># do_something(777)</span></span><br><span class="line"><span class="comment"># cv2.waitKey(0)</span></span><br></pre></td></tr></table></figure>
+
+<p>Испытания в один день и одну ночь, показали слабые места</p>
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO:"></a>TODO:</h2><ol>
+<li>Жесткое крепление камеры и адаптивный режим поиска</li>
+</ol>
+<p>Из-за не жесткого крепления камера снимок съезжает каждый день по чуть-чуть. Когда это остановится не ясно) 
+Возможно из-за того, что в старом креплении использовалась алюминиевая проволока, которая пытается раскрутиться в первоначальный свой вид.
+Более мощное крепление должно решить это, плюс если это все заработает адаптивный поиск ручек будет большим плюсом, так как плиту тоже можно слегка сдвинуть, а 
+перенастраивать программу не совсем быстро, скажу честно)</p>
+<ol start="2">
+<li>Улучшить качество фото или менять алгоритм </li>
+</ol>
+<p>Не все положения ручки считываются правильно</p>
+<!-- Нижнее положение ручки слишком затемненное
+Только если угол не большой, то на нужном месте появляется блик. От окна возможно. -->
+
+<p>Все было круто, пока одну ручку не выкрутили на полную. Стрелками обозначена эта ручка. Ручки которые программа посчитала открытыми, программа обвела жирным контуром, где закрыты там тонкий контур.
+Одна открытая на полную ручка не защитана, сумма яркости пикселей прямоугольника, не на много отличается значению яркости бекраунда.
+Как вариант можно еще уменьшить область прямоугольника.</p>
+<p>Вывод - либо менять алгоритм, совсем не привязываться к пикселям, а использовать, к примеру алгоритм поиска ближних соседей, либо нужно улучшать качество фото освещением.</p>
+<p><img src="/2020/07/18/micro-home-opencv-gas-handler/bug_0.png" alt></p>
+<ol start="3">
+<li>Автоматическое тестирование </li>
+</ol>
+<p>Собрать много изображений плиты при разном освещении, а разных комбинациях повернутых ручек, написать тесты, так как вручную прогнать все варианты при разном освещении, и с подбором параметров оч. сложно и затратно по времени.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2020/07/18/micro-home-opencv-gas-handler/" data-id="ckhz3iy8w002229te2waxsefw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Распознаем положение ручек на газовой плите с opencv",
+        "image": "/2020/07/18/micro-home-opencv-gas-handler/photo0.png",
+        "keywords": "house opencv",
+        "genre": "",
+        "datePublished": "2020-07-18",
+        "dateCreated": "2020-07-18",
+        "dateModified": "2020-07-18",
+        "url": "/2020/07/18/micro-home-opencv-gas-handler/",
+        "description": "
+Всем привет, и сегодня о попытках сделать добро себе и людям. Сегодня будем искать варианты, как узнать включен газ или нет, чтобы как минимум не забыть что-то на плите. Автоматика это конечно хорошо",
+        "wordCount": 2782
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/07/18/micro-home-opencv-gas-handler/index.html';
+
+        // this.page.url = '/2020/07/18/micro-home-opencv-gas-handler/index.html';
+
+        this.page.identifier = '2020/07/18/micro-home-opencv-gas-handler/index.html';
+        this.page.title = 'Распознаем положение ручек на газовой плите с opencv';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/04/10/whats-inside-guitar-pre-amp/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Дано"><span class="toc-number">1.</span> <span class="toc-text">Дано</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ручки-плиты"><span class="toc-number">1.1.</span> <span class="toc-text">Ручки плиты</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Raspberry-Pi-zero-camera"><span class="toc-number">1.2.</span> <span class="toc-text">Raspberry Pi zero camera</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Способы-распознование"><span class="toc-number">2.</span> <span class="toc-text">Способы распознование</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-По-шаблону"><span class="toc-number">2.1.</span> <span class="toc-text">1 - По шаблону</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-По-пикселям"><span class="toc-number">2.2.</span> <span class="toc-text">2 - По пикселям</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TODO"><span class="toc-number">3.</span> <span class="toc-text">TODO:</span></a></li></ol>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2020/07/18/micro-home-opencv-gas-handler/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/07/18/micro-home-opencv-gas-handler/index.html';
+
+        // this.page.url = '/2020/07/18/micro-home-opencv-gas-handler/index.html';
+
+        this.page.identifier = '2020/07/18/micro-home-opencv-gas-handler/index.html';
+        this.page.title = 'Распознаем положение ручек на газовой плите с opencv';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

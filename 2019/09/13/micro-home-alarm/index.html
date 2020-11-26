@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>home-alarm | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="arduino,esp8266,house,sensor,battery">
+    
+    <meta name="description" content="home-alarm">
+<meta name="keywords" content="arduino,esp8266,house,sensor,battery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="home-alarm">
+<meta property="og:url" content="/2019/09/13/micro-home-alarm/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="home-alarm">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-11-15T13:09:14.944Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="home-alarm">
+<meta name="twitter:description" content="home-alarm">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/House/">House</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/House/electricity/">electricity</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Microcontroller/avr/">avr</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-home-alarm" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        home-alarm
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/09/13/micro-home-alarm/" class="article-date">
+            <time datetime="2019-09-13T07:24:49.000Z" itemprop="datePublished">2019-09-13</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/arduino/">arduino</a>, <a class="tag-link" href="/tags/battery/">battery</a>, <a class="tag-link" href="/tags/esp8266/">esp8266</a>, <a class="tag-link" href="/tags/house/">house</a>, <a class="tag-link" href="/tags/sensor/">sensor</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="Hey, password is required here." />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="c23144b706fa16daa4966392cea341eb07278d45754ad8cb80d30c86fbb22a74">fb19c792756ce4fc9a121ca6ea82a8cbb3f34a1eef7c1db50c3efa1be60b5a5db501844c0cd01f890dca3a8c0bc85e14c7a7ec49cee589d0cc9d815d974ebe4a3afefdaff4b41a5a0b4da186ef5077179c38d32bfe2ec7f7977b2b45454644b018b750dac2141fa03d80df6f1fcc6d62343f5e5e142b7a7c9cd0714661931b2dbfae95fdd13b7a29bd0842135d890d08dce8d9b2cccb89929fffeb5ff62865c1815616285084265da6b6b0a81862efb49f955177829b329ed8ebe91bf108e487df072ef700c671cdc207648307df026635c2da5471b133f6e9cde1d79eab5b1ce8f071b997580303f9c344d34990c1c3b97bcdb72cb52011db3acf3ccce948da428860bfc9e0fc071d092d3126bb95935ea29fcfcaed2c72d08bd2f89d33850540e4d45ece89870236fe3bcbc9d923886358d73f9a66fd30afb46a310fb126d41cf976c93e6c8fb4142f7a7c2beb7e4933f2dee45708b10ff0dc403bc855c0e625210c483a870433060d5ba69aeeec6797d093a70c58ca074eeded7bfacaa69b5a164524eed07014b48dd98780051d9390cf8d25545081681e9606278bcaa928d66b24434e90d80d2748e3d2e2aa93e634c05281e514d39d6e85c05a94bac4f40e6ca84e4121872390647e6bbd9639db388e4a0c2fa7c6f554745be094620707d73e3b0bd51fbdc4409c075eed825c5774b11cab53df269f22764332b91e9b5ae483bd3279330f209882c296027e2b5e1bc3cd5078ebabbf30986ad860cd810826cea0ea59004704833be7a4a46ee02f539ee488dcbe96d0662f347efced8ebd7b66a4303e1ea6df5753f30342e196e57244332650d84d4b85944a7f5b15f9daa8ffd35a07803c2e06062671fb28eeaace3e0cea1ea3941bdb32de9e3ef670d0a8b329591c3bdcd88bdf8f0a670de5aa9d0673c46cf1d7cd190ffd8dafffac4a3a133eca36640c27bd4c5711313e9c1381c7e16db89dc40200d39d0d4825b81d900c51fa39368a606f591cdd689f8983b4507e172129a72c936394af9d3640729f0a3341d1ce47cd17b37a0e1533e72f0241a8e4db6278911cbc6ebe7c88c5cfae060eab485ae0c743d361673f7b2e71773136392caf72ec6c83bc5a237389cc4b1d06d213c2fa58d7d1bc5677382f6970d096ece2711afa2aa27dbde1eb9b76063bec05352a1a756437f0af8a1c24ba9362b0a277f99c25a2c779a4eaab13b4482a69165bc24e0421ae0c533a3f04ca66ba8184dbbc7886487fae83b59db410d4bbe0d147b997b9bd54a56f6c557a468536505c2174aec059cc74170efa5c98c999a425f535986aa9d490814c8b006da371ec857d384bbf53779bf5fe9d42260dfde93dbf650b6d4fdc0646d4036d84009463e6d2830f789c62f133b749963c38ea6b4bd03c1be37f935a6a7ea5b10d6583861762e10dfa062d6756ef2ed39d7354851c2ec38b32b66559b851e39760d8f8d95d950edbe8a15207ccddf6d8944330e37c6dd929deebd7df6ca6af2be91e10c89e96ceb925db38cbdebf73aecf097aa3128c4341c3c1f6dd2981575059dc795880d4dd182b4105f6ee2b90be46071a4c157c62c0f345135e0049b473b9b28cc1196d17ca9253c1fd6d687c27454c7b03fb83d51893fc56610289f337ca0c75bde4df7751cf2d4af1d7f1dccefb6fc75992f09285dac90b80df132f0f6b1a408fa4705a1dcb1645c0f043e6ef001fe8dd96cf16594dd01a2b472be44de52f01ecc6ee352b265442c057ce36ba6c371c1bdce8dc9e8a317e29f2aaa20cce78de72e0703932bd2fe14bf5ade43f6485216926cfb9580811e19897ffa97e55b87d03ea3de5125cb099d41865ea8652b603874f98371709aeec25ed42db81bc98883acadd551e322b5db5c07d6ab51059da504f74952f5a86842b726ca3252e04786d79fdb83fa21f1f835bbfcb6fb7d6e7f1b741371709b684d3e79743df2205c1f3bc2a17b91d64829033ff49ef7b403fcf921898ed49252da87f6c44396f06b8ba044a0d8cb6289db908713c68b59a44e5f312685b248fc5ff5dc5c14c4bca08fac6f7067302e86883d17e76cb564869832e74e6486dda7bd4569e83bdec488e6117b0d996db04700b716250c32878a136d4230e8fd01cc22f0becf4b84fc98cdfb297dd5224c8939e6a293b24b4622e64fead14adfdd9d4d3d599ebec522622972b47a5fa3cb4a1800dd4978746eb48d07dffaf9ba746cbf2a59f41e934fd7cbf0a13c4789b9cd6663a8db55095f2e2dc87af1e831e4503eec6d95d7fad6550b9219543f2c5760bdfd76b55ffc5cd68d861670ee5967c31a7cd2382d34dda0710d2143b4c703261c7c003a81772262310d09d81e0da45ce45b4862c10c9dcaf2d1c92c28b9b8caf23ad3bdc6e77d14415bccb6fb390d207284bed5cffd36c991355600cf0d3ad92233930706bad5abb7a63596a2ab74c19af7bbd2a75a7be1982d4b55dd4b7895734f11677c6b7e70793dfd061dd6b0827bc45841da7581bfa5c89d8f9cc41598488473a847e7c507edeb7610a8d365e0632577c76b474b520feddf257c1a157794f956ce457a07a63e93a8d389ad914fb009b2250fd097bbb94106f6632e3b21b39945fcd23780538c891e7b1d205f324f1ef7abba18673f718a95d7145bf5bf5f692ef811bff01e98958b8f089e8aa6050b4942f8a418f76223dedb27400a8439ab9ed906ed7</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2019/09/13/micro-home-alarm/" data-id="ckhz3iy8x002429tearctfsum" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "home-alarm",
+        "image": "/",
+        "keywords": "arduino esp8266 house sensor battery",
+        "genre": "House Microcontroller avr electricity",
+        "datePublished": "2019-09-13",
+        "dateCreated": "2019-09-13",
+        "dateModified": "2020-11-15",
+        "url": "/2019/09/13/micro-home-alarm/",
+        "description": "Here's something encrypted, password is required to continue reading.",
+        "wordCount": 64
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/09/13/micro-home-alarm/index.html';
+
+        // this.page.url = '/2019/09/13/micro-home-alarm/index.html';
+
+        this.page.identifier = '2019/09/13/micro-home-alarm/index.html';
+        this.page.title = 'home-alarm';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2019/09/13/micro-home-alarm/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/09/13/micro-home-alarm/index.html';
+
+        // this.page.url = '/2019/09/13/micro-home-alarm/index.html';
+
+        this.page.identifier = '2019/09/13/micro-home-alarm/index.html';
+        this.page.title = 'home-alarm';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Переход на линукс | Пре-продакшн</title><meta name="robots" content="noindex">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="linux">
+    
+    <meta name="description" content="Переход на линукс">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Переход на линукс">
+<meta property="og:url" content="/2020/11/21/linux-general/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Переход на линукс">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2020/11/21/linux-general/rdp/2020-11-26-15-55-19.png">
+<meta property="og:updated_time" content="2020-11-26T16:38:26.262Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Переход на линукс">
+<meta name="twitter:description" content="Переход на линукс">
+<meta name="twitter:image" content="/2020/11/21/linux-general/rdp/2020-11-26-15-55-19.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-linux-general" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Переход на линукс
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/11/21/linux-general/" class="article-date">
+            <time datetime="2020-11-21T09:22:59.000Z" itemprop="datePublished">2020-11-21</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Переход на линукс
+Переход на линукс
+Переход на линукс
+Переход на линукс
+Переход на линукс</p>
+<p>Работая с расбери пай, и сервером на digital ocean пришлось постепенно вникать в систему линукс, и узнавать основные команды. Спустя три года появилась мысль, а почему бы с основного компа не перейти на линукс. С опытом работы в линуксе ростет уверенность, что операционка достойная.</p>
+<p>Был составлен план миграции</p>
+<ol>
+<li>Подготовить список установленных и используемых программ на windows.</li>
+<li>Проверка наличия официальных версий и поиск аналогов программ.</li>
+<li>Какия плюсы я получу от всего этого.</li>
+</ol>
+<p>Чтобы переход был безболезненным и плавным можно запускать линукс на виртуальной машине с помощью VirtualBox, после изучения новой среды, поставить линукс основной системой. Также можно сделать из текущей ОС виндой виртуальную машину, котору можно будет впоследствие запустить на линукс, если очень будет нужно. </p>
+<p>Делается это так, как описано здесь<br><a href="https://community.spiceworks.com/how_to/148559-windows-10-physical-to-virtualbox" target="_blank" rel="noopener">https://community.spiceworks.com/how_to/148559-windows-10-physical-to-virtualbox</a><br>Программой Disk2vhd создается образ, причем его можно делать из загруженной ОС.<br><a href="https://docs.microsoft.com/en-us/sysinternals/downloads/disk2vhd" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sysinternals/downloads/disk2vhd</a>   </p>
+<p>Затем образ конвертируется в образ VirtualBox, затем при создании виртуалки не забыть установить флаг в настройках Enable EFI (special OSes only).<br><code>C:\Program Files\Oracle\VirtualBox .... VBoxManage clonehd &lt;filename&gt;.vhdx &lt;filename&gt;.vdi --format VDI</code><br>И больше действий от меня не потребовалось.  </p>
+<h2 id="Список-программ"><a href="#Список-программ" class="headerlink" title="Список программ"></a>Список программ</h2><p>Для чего мы используем операционную систему, если копировать файлы, то это можно сделать одинакого просто в любой из них,
+плюсом линукса будет бесплатность, и большая поддержа форматов дисков.  </p>
+<p>Кроме копирования файлов, еще простые задачи как посмотреть видео, открыть браузер походить по сайтам, послушать музыку, 
+отредактировать документ, все это тоже можно сделать в любой системе, и предпочтительней та которая бесплатная, к примеру убунту.
+Выходит, что остаться на винде можно в том случае если нету аналога програм под линукс, или куплена программа только под винду, но есть
+возможность попытаться запустить ее в среде линукса, это wine, mono, virtual box (об этом позже).</p>
+<h3 id="Кросплатформенные-приложения-под-линукс"><a href="#Кросплатформенные-приложения-под-линукс" class="headerlink" title="Кросплатформенные приложения под линукс"></a>Кросплатформенные приложения под линукс</h3><table>
+<thead>
+<tr>
+<th>Программа</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VLC</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VSCode</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>inkscape</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FileZilla</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>vnc</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>freedownloadmanager</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Opera</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mozila</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Chrome Browser</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Skype</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>viber</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Virtual Box</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Audacity</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>KeePassXC</td>
+<td>sudo apt install keepassxc</td>
+<td></td>
+</tr>
+<tr>
+<td>TrueCrypt</td>
+<td></td>
+<td>еще есть форк VeraCrypt, но не все переходят на него</td>
+</tr>
+<tr>
+<td>avrdude</td>
+<td>sudo apt-get install gcc-avr avrdude avr-libc binutils-avr</td>
+<td><a href="https://fos.cmb.ac.lk/esl/programing-avr-ubuntu-14-04-usbasp/" target="_blank" rel="noopener">https://fos.cmb.ac.lk/esl/programing-avr-ubuntu-14-04-usbasp/</a></td>
+</tr>
+<tr>
+<td>ArduinoIDE</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>git</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>gimp</td>
+<td></td>
+<td>sudo snap install gimp</td>
+</tr>
+<tr>
+<td>Java8</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>freedownloadmanager</td>
+<td></td>
+<td><a href="https://www.freedownloadmanager.org/ru/download.htm" target="_blank" rel="noopener">https://www.freedownloadmanager.org/ru/download.htm</a></td>
+</tr>
+<tr>
+<td>avidemux vc++</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>git</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Программы-которые-стали-не-нужны"><a href="#Программы-которые-стали-не-нужны" class="headerlink" title="Программы которые стали не нужны"></a>Программы которые стали не нужны</h3><table>
+<thead>
+<tr>
+<th>Программа</th>
+<th>Аналог</th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PuTTY</td>
+<td>ssh</td>
+<td></td>
+</tr>
+<tr>
+<td>wind32DiskImage</td>
+<td>dd</td>
+<td></td>
+</tr>
+<tr>
+<td>UltralISO</td>
+<td>mount</td>
+<td></td>
+</tr>
+<tr>
+<td>cisco anyconnect secure mobility client</td>
+<td>sudo apt-get install openconnect network-manager-openconnect network-manager-openconnect-gnome</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="Плюсы"><a href="#Плюсы" class="headerlink" title="Плюсы"></a>Плюсы</h3><ul>
+<li>сглаживание шрифтов лучше на убунту, чем на виндоус мое мнение</li>
+<li>драйвера можно найти под старое оборудование, даже сканер завелся на РП3</li>
+<li>на новом ноуте нашлись все нужные драйвера, не работает только изменение яркости с клавиатуры, но можно настроить горячии клавиши</li>
+<li>размер ОС в разы меньше.</li>
+</ul>
+<h3 id="Аналоги-коротко"><a href="#Аналоги-коротко" class="headerlink" title="Аналоги коротко"></a>Аналоги коротко</h3><table>
+<thead>
+<tr>
+<th>Программа</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cisco anyconnect secure mobility client</td>
+<td>sudo apt-get install openconnect network-manager-openconnect network-manager-openconnect-gnome</td>
+<td></td>
+</tr>
+<tr>
+<td>usbasp</td>
+<td>sudo apt-get install gcc-avr avrdude avr-libc binutils-avr</td>
+<td></td>
+</tr>
+<tr>
+<td>google sync</td>
+<td>rsync</td>
+<td>Одна программа которы работает и с гугл диском, и с яндекс диском, итд</td>
+</tr>
+<tr>
+<td>avrdudeprog33</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ShareX (точный аналог не найден)</td>
+<td>sudo apt-get install simplescreenrecorder + Flameshot (sudo snap install flameshot)</td>
+<td><a href="https://snapcraft.io/flameshot" target="_blank" rel="noopener">https://snapcraft.io/flameshot</a>  (отказался есть баги, если не точно нажать клавиши скрина Flameshot) –&gt;&gt; <a href="https://github.com/ksnip/ksnip" target="_blank" rel="noopener">https://github.com/ksnip/ksnip</a></td>
+</tr>
+<tr>
+<td>ShareX (крутая прога)</td>
+<td></td>
+<td><a href="https://github.com/ksnip/ksnip" target="_blank" rel="noopener">https://github.com/ksnip/ksnip</a></td>
+</tr>
+<tr>
+<td>paint.net (точный аналог не найден)</td>
+<td></td>
+<td>GIMP   pinta = sudo apt-get install pinta (bugs)</td>
+</tr>
+<tr>
+<td>Microsoft Office</td>
+<td></td>
+<td>libreoffice (предустановлен в убунте)</td>
+</tr>
+<tr>
+<td>ComPort Monitor</td>
+<td>CoolTermLinux</td>
+<td><a href="https://karibe.co.ke/2018/10/installing-coolterm-the-best-serial-terminal-in-linux/" target="_blank" rel="noopener">https://karibe.co.ke/2018/10/installing-coolterm-the-best-serial-terminal-in-linux/</a></td>
+</tr>
+<tr>
+<td>PDF Viewer</td>
+<td>Qpdfview</td>
+<td>apt-get install qpdfview</td>
+</tr>
+</tbody></table>
+<h3 id="Аналоги-TotalCommander"><a href="#Аналоги-TotalCommander" class="headerlink" title="Аналоги TotalCommander"></a>Аналоги TotalCommander</h3><h5 id="Double-Commander-WINDOWS-LINUX"><a href="#Double-Commander-WINDOWS-LINUX" class="headerlink" title="Double Commander [WINDOWS][LINUX]"></a>Double Commander [WINDOWS][LINUX]</h5><p>Пока для меня этот лучший.
+<a href="https://doublecmd.sourceforge.io/" target="_blank" rel="noopener">https://doublecmd.sourceforge.io/</a></p>
+<h5 id="Nautilus"><a href="#Nautilus" class="headerlink" title="Nautilus"></a>Nautilus</h5><p>Достаточно хорош, есть избранное для каталогов.
+Для открытия его под рутом, из консоли в текущем каталоге нужно ввести команду, имя файла, пробел, точка.
+sudo nautilus .</p>
+<h5 id="freecommander-WINDOWS-LINUX-WINE"><a href="#freecommander-WINDOWS-LINUX-WINE" class="headerlink" title="freecommander [WINDOWS][LINUX WINE]"></a>freecommander [WINDOWS][LINUX WINE]</h5><p><a href="https://freecommander.com/en/summary/" target="_blank" rel="noopener">https://freecommander.com/en/summary/</a></p>
+<h5 id="Krusader-LINUX"><a href="#Krusader-LINUX" class="headerlink" title="Krusader [LINUX]"></a>Krusader [LINUX]</h5><p>Этот не смог засинхронизировать два каталога с большим количеством файлов, либо ему нужно очень много времени на это.</p>
+<h5 id="pcmanfm"><a href="#pcmanfm" class="headerlink" title="pcmanfm"></a>pcmanfm</h5><p>Очень быстрый, но иногда бывают баги.
+Синхронизации каталогов не нашел.</p>
+<p>Лёгкие приложения Linux для старого железа
+<a href="https://habr.com/ru/company/vdsina/blog/521516/" target="_blank" rel="noopener">https://habr.com/ru/company/vdsina/blog/521516/</a></p>
+<h3 id="Аналоги-RDP"><a href="#Аналоги-RDP" class="headerlink" title="Аналоги RDP"></a>Аналоги RDP</h3><h5 id="remmina"><a href="#remmina" class="headerlink" title="remmina"></a>remmina</h5><p><img src="/2020/11/21/linux-general/rdp/2020-11-26-15-55-19.png" alt></p>
+<p><em>Лучше создать запись, с нее можно быстро подключиться по указанным ранее настройкам.</em></p>
+<p><img src="/2020/11/21/linux-general/rdp/2020-11-26-16-01-35.png" alt></p>
+<p><img src="/2020/11/21/linux-general/rdp/2020-11-26-16-03-49.png" alt></p>
+<p>Пришлось немного воевать с тем, чтобы изображение по РДП не было смазанным. Ситуация такая, у меня два монитора, с разным разрешением,
+один моник с высоким разрешением, и на нем раньше винда сама выставляла масштабирование, и при подключении по РДП винды,
+настройки масштабирования применялись сразу к удаленному компу, сейчас это не работает так хорошо, но скорее есть решение лучше.
+Для того, чтобы сейчас экран не замыливался, масштабирование убунты системное, я убрал, но при подключении по РПД к компу винды,
+указываю, чтобы оно было 120%, иначе очень мелко.
+Минус в том, что теперь в системе убунты не будет масштабирования, но можно в приложения увеличить шрифт.
+Минусом ремины является возможность подключения только с одного монитора, для двух есть xfreerdp.</p>
+<h5 id="xfreerdp"><a href="#xfreerdp" class="headerlink" title="xfreerdp"></a>xfreerdp</h5><p>Можно подключаться с двумя мониторами.<br><em>Масштабирование указывается общее для двух моников сразу, хотелось бы для каждого монитора отдельно, может такое и есть.</em><br><code>sudo apt install freerdp2-x11</code><br><code>xfreerdp /multimon /u:USER_NAME  &#39;/p:PASSWORD&#39; /v:USER_NAME /scale:100 /scale-desktop:120</code>  </p>
+<p><a href="https://medium.com/analytics-vidhya/linux-remote-desktop-multiple-monitor-support-840974e9eb73" target="_blank" rel="noopener">https://medium.com/analytics-vidhya/linux-remote-desktop-multiple-monitor-support-840974e9eb73</a>  </p>
+<h5 id="windows-virtual-box"><a href="#windows-virtual-box" class="headerlink" title="windows + virtual box"></a>windows + virtual box</h5><p>Не проверял, но скорей всего будет работать)  </p>
+<p><img src="/2020/11/21/linux-general/rdp/2020-11-26-16-14-34.png" alt></p>
+<h5 id="Chrome-Remote-Desktop"><a href="#Chrome-Remote-Desktop" class="headerlink" title="Chrome Remote Desktop"></a>Chrome Remote Desktop</h5><p>не юзал<br>???
+<a href="https://habr.com/ru/post/229293/" target="_blank" rel="noopener">https://habr.com/ru/post/229293/</a>  </p>
+<h3 id="Как-запустить-то-чего-не-нашлось-под-линукс"><a href="#Как-запустить-то-чего-не-нашлось-под-линукс" class="headerlink" title="Как запустить то, чего не нашлось под линукс"></a>Как запустить то, чего не нашлось под линукс</h3><h5 id="wine"><a href="#wine" class="headerlink" title="wine"></a>wine</h5><p>sudo apt install wine-stable
+sudo apt purge wine-stable</p>
+<p><a href="https://losst.ru/ustanovka-wine-v-ubuntu-18-04#1_%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0_wine_%D0%B8%D0%B7_%D0%BE%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85_%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%B5%D0%B2" target="_blank" rel="noopener">https://losst.ru/ustanovka-wine-v-ubuntu-18-04#1_%D0%A3%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0_wine_%D0%B8%D0%B7_%D0%BE%D1%84%D0%B8%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85_%D1%80%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%B5%D0%B2</a></p>
+<p><a href="https://vitux.com/how-to-install-wine-on-ubuntu/" target="_blank" rel="noopener">https://vitux.com/how-to-install-wine-on-ubuntu/</a></p>
+<p><a href="https://neosmart.net/blog/2007/complete-net-portability-with-wine-mono/" target="_blank" rel="noopener">https://neosmart.net/blog/2007/complete-net-portability-with-wine-mono/</a></p>
+<p>winetricks
+<a href="https://habr.com/ru/post/56618/" target="_blank" rel="noopener">https://habr.com/ru/post/56618/</a></p>
+<h5 id="mono"><a href="#mono" class="headerlink" title="mono"></a>mono</h5><p>Everything in .NET 4.7 except WPF, WWF, and with limited WCF and limited ASP.NET async stack.</p>
+<p><a href="https://www.mono-project.com/docs/about-mono/compatibility/" target="_blank" rel="noopener">https://www.mono-project.com/docs/about-mono/compatibility/</a></p>
+<!-- 
+
+
+мне сильно не понравилось, что под дотнет кор 2-3 нужна вижла последняя, которая ставится тоже на последнюю ось винды. А был я на 7ке где уже все настроено) в общем политика майкрософт в этом плане не понаравилось. Причем чтобы писать под линукс, можно было просто поставить пакет 3его дотнет.кора, и все ок.
+--
+Еще на распбери часто, чтото делаю, и там диск формата линукса, который виндой не особо откроешь нормально.
+--
+На линуксе куча прог бесплатных по работе с диском, бекап системы, монтирование образа исо, и все из коробки, ssh и тд. На винде все это дополнительные проги, причем не все бесплатное, и кряки искать неохота)
+---
+Винду из большего можно юзать лишь из-за программ, которых нету на линуксе, но есть аналоги, на крайняк есть wine, или уже виртуалбокс) еще оставил диск винды, если уж совсем нужно будет, подкину его в комп и загружусь побыстрому)
+ -->
+
+
+
+
+
+
+<h2 id="Команды"><a href="#Команды" class="headerlink" title="Команды"></a>Команды</h2><h5 id="Получить-все-порты-usb-and-com"><a href="#Получить-все-порты-usb-and-com" class="headerlink" title="Получить все порты usb and com"></a>Получить все порты usb and com</h5><p>ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1</p>
+<h5 id="показать-все-диски-и-отмонтированые-тоже"><a href="#показать-все-диски-и-отмонтированые-тоже" class="headerlink" title="показать все диски и отмонтированые тоже"></a>показать все диски и отмонтированые тоже</h5><p>sudo fdisk -l</p>
+<h5 id="подключить-нтфс-диск-на-запись"><a href="#подключить-нтфс-диск-на-запись" class="headerlink" title="подключить нтфс диск на запись"></a>подключить нтфс диск на запись</h5><p>sudo ntfsfix /dev/sdb1<br>sudo mkdir /mnt/media0<br>sudo mount /dev/sdc1 /mnt/media0  </p>
+<h5 id="уменьшать-размер-образа-РП"><a href="#уменьшать-размер-образа-РП" class="headerlink" title="уменьшать размер образа РП"></a>уменьшать размер образа РП</h5><h5 id="монтировать-исо-образ-как-папку"><a href="#монтировать-исо-образ-как-папку" class="headerlink" title="монтировать исо образ как папку"></a>монтировать исо образ как папку</h5><h5 id="монтировать-исо-образ-как-физ-устройство-и-подключаться-партионом-прогой"><a href="#монтировать-исо-образ-как-физ-устройство-и-подключаться-партионом-прогой" class="headerlink" title="монтировать исо образ как физ. устройство и подключаться партионом прогой"></a>монтировать исо образ как физ. устройство и подключаться партионом прогой</h5><p>file:///home/vadim/MY/PC_copy/Documents/!Linux/How%20to%20Backup%20and%20Restore%20Your%20Raspberry%20Pi%20Image%20-%20Agung%20Pratama%20-%20Blog.mhtml<br>losetup -d /dev/loop0</p>
+<h5 id="найти-процес-по-окну"><a href="#найти-процес-по-окну" class="headerlink" title="найти процес по окну"></a>найти процес по окну</h5><p>xprop | grep WM_CLASS
+WM_CLASS(STRING) = “gedit”, “Gedit”</p>
+<h5 id="Display-the-Path-of-Your-Current-Directory"><a href="#Display-the-Path-of-Your-Current-Directory" class="headerlink" title="Display the Path of Your Current Directory"></a>Display the Path of Your Current Directory</h5><p>$ pwd
+/home/scott/music/new</p>
+<p>#####
+По умолчанию whereis выполняет поиск файлов команды в жестко заданных путях и каталогах,
+перечисленных в переменных среды. Используйте опцию -l, чтобы найти каталоги, где команда whereis ищет.</p>
+<p>whereis bash
+whereis -l</p>
+<h5 id="scp-копирование-файлов-через-ssh"><a href="#scp-копирование-файлов-через-ssh" class="headerlink" title="scp - копирование файлов через ssh"></a>scp - копирование файлов через ssh</h5><p><a href="https://wiki.enchtex.info/tools/console/scp" target="_blank" rel="noopener">https://wiki.enchtex.info/tools/console/scp</a></p>
+<p>Скопировать локальный файл на сервер:
+scp file.gz <a href="mailto:root@server.my" target="_blank" rel="noopener">root@server.my</a>:/home/dir</p>
+<p>Скопировать всё содержимое папки на сервере (рекурсивно) в локальную папку (с подробным выводом):
+scp -r <a href="mailto:root@server.my" target="_blank" rel="noopener">root@server.my</a>:/home/dir/ /home/local/my/</p>
+<h2 id="Links"><a href="#Links" class="headerlink" title="Links"></a>Links</h2><p>Выбираем файловую систему независимую от ОС<br><a href="https://habr.com/ru/post/341042/" target="_blank" rel="noopener">https://habr.com/ru/post/341042/</a>   </p>
+<!-- flag of hidden posts -->
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2020/11/21/linux-general/" data-id="ckhz3iy8n001j29telreqfqeq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Переход на линукс",
+        "image": "/2020/11/21/linux-general/rdp/2020-11-26-15-55-19.png",
+        "keywords": "linux",
+        "genre": "linux",
+        "datePublished": "2020-11-21",
+        "dateCreated": "2020-11-21",
+        "dateModified": "2020-11-26",
+        "url": "/2020/11/21/linux-general/",
+        "description": "Переход на линукс
+Переход на линукс
+Переход на линукс
+Переход на линукс
+Переход на линукс
+Работая с расбери пай, и сервером на digital ocean пришлось постепенно вникать в систему линукс, и узнавать ос",
+        "wordCount": 1227
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/11/21/linux-general/index.html';
+
+        // this.page.url = '/2020/11/21/linux-general/index.html';
+
+        this.page.identifier = '2020/11/21/linux-general/index.html';
+        this.page.title = 'Переход на линукс';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Список-программ"><span class="toc-number">1.</span> <span class="toc-text">Список программ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Кросплатформенные-приложения-под-линукс"><span class="toc-number">1.1.</span> <span class="toc-text">Кросплатформенные приложения под линукс</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Программы-которые-стали-не-нужны"><span class="toc-number">1.2.</span> <span class="toc-text">Программы которые стали не нужны</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Плюсы"><span class="toc-number">1.3.</span> <span class="toc-text">Плюсы</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Аналоги-коротко"><span class="toc-number">1.4.</span> <span class="toc-text">Аналоги коротко</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Аналоги-TotalCommander"><span class="toc-number">1.5.</span> <span class="toc-text">Аналоги TotalCommander</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Double-Commander-WINDOWS-LINUX"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">Double Commander [WINDOWS][LINUX]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Nautilus"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">Nautilus</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#freecommander-WINDOWS-LINUX-WINE"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">freecommander [WINDOWS][LINUX WINE]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Krusader-LINUX"><span class="toc-number">1.5.0.4.</span> <span class="toc-text">Krusader [LINUX]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pcmanfm"><span class="toc-number">1.5.0.5.</span> <span class="toc-text">pcmanfm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Аналоги-RDP"><span class="toc-number">1.6.</span> <span class="toc-text">Аналоги RDP</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#remmina"><span class="toc-number">1.6.0.1.</span> <span class="toc-text">remmina</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#xfreerdp"><span class="toc-number">1.6.0.2.</span> <span class="toc-text">xfreerdp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#windows-virtual-box"><span class="toc-number">1.6.0.3.</span> <span class="toc-text">windows + virtual box</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Chrome-Remote-Desktop"><span class="toc-number">1.6.0.4.</span> <span class="toc-text">Chrome Remote Desktop</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Как-запустить-то-чего-не-нашлось-под-линукс"><span class="toc-number">1.7.</span> <span class="toc-text">Как запустить то, чего не нашлось под линукс</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#wine"><span class="toc-number">1.7.0.1.</span> <span class="toc-text">wine</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mono"><span class="toc-number">1.7.0.2.</span> <span class="toc-text">mono</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Команды"><span class="toc-number">2.</span> <span class="toc-text">Команды</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Получить-все-порты-usb-and-com"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">Получить все порты usb and com</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#показать-все-диски-и-отмонтированые-тоже"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">показать все диски и отмонтированые тоже</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#подключить-нтфс-диск-на-запись"><span class="toc-number">2.0.0.3.</span> <span class="toc-text">подключить нтфс диск на запись</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#уменьшать-размер-образа-РП"><span class="toc-number">2.0.0.4.</span> <span class="toc-text">уменьшать размер образа РП</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#монтировать-исо-образ-как-папку"><span class="toc-number">2.0.0.5.</span> <span class="toc-text">монтировать исо образ как папку</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#монтировать-исо-образ-как-физ-устройство-и-подключаться-партионом-прогой"><span class="toc-number">2.0.0.6.</span> <span class="toc-text">монтировать исо образ как физ. устройство и подключаться партионом прогой</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#найти-процес-по-окну"><span class="toc-number">2.0.0.7.</span> <span class="toc-text">найти процес по окну</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Display-the-Path-of-Your-Current-Directory"><span class="toc-number">2.0.0.8.</span> <span class="toc-text">Display the Path of Your Current Directory</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#scp-копирование-файлов-через-ssh"><span class="toc-number">2.0.0.9.</span> <span class="toc-text">scp - копирование файлов через ssh</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Links"><span class="toc-number">3.</span> <span class="toc-text">Links</span></a></li></ol>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2020/11/21/linux-general/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/11/21/linux-general/index.html';
+
+        // this.page.url = '/2020/11/21/linux-general/index.html';
+
+        this.page.identifier = '2020/11/21/linux-general/index.html';
+        this.page.title = 'Переход на линукс';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

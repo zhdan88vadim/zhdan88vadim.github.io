@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Часть 4 - Датчик протечки воды - Пишем сервер на google scipts | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="attiny">
+    
+    <meta name="description" content="Часть 4 - Датчик протечки воды - Пишем сервер на google scipts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Часть 4 - Датчик протечки воды - Пишем сервер на google scipts">
+<meta property="og:url" content="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Часть 4 - Датчик протечки воды - Пишем сервер на google scipts">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/logo_part4.png">
+<meta property="og:updated_time" content="2020-11-15T13:09:15.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Часть 4 - Датчик протечки воды - Пишем сервер на google scipts">
+<meta name="twitter:description" content="Часть 4 - Датчик протечки воды - Пишем сервер на google scipts">
+<meta name="twitter:image" content="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/logo_part4.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Microcontroller/avr/">avr</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-water-leak-sensor-part4-write-server-code" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Часть 4 - Датчик протечки воды - Пишем сервер на google scipts
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/" class="article-date">
+            <time datetime="2019-10-14T07:25:17.000Z" itemprop="datePublished">2019-10-14</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/attiny/">attiny</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Создание-приложения-и-его-публикация"><a href="#Создание-приложения-и-его-публикация" class="headerlink" title="Создание приложения и его публикация"></a>Создание приложения и его публикация</h2><p>Заходим на сайт и создаем новый проект<br><a href="https://script.google.com/home" target="_blank" rel="noopener">https://script.google.com/home</a></p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-18-57-51_google_apps_0.png" alt></p>
+<p>Если проект уже был создан, и его код нужно обновить, то открываем на редактирование</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-13-17-43-24_google_apps_edit_project.png" alt></p>
+<p>Отроется окно в котором будем работать  </p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-00-03_google_apps_1.png" alt></p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-00-59_google_apps_2.png" alt></p>
+<p>Берем этот код расположенный ниже, копируем и вставляем его в окно, нажимаем CTRL + S, для того чтобы сохранить изменения.<br>Далее нужно опубликовать этот код, т.е сделать его доступным для внешнего мира.  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doPost</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> data;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    d = &#123;&#125;;</span></span><br><span class="line"><span class="comment">//    d.postData = &#123;&#125;;</span></span><br><span class="line"><span class="comment">//    d.postData.contents = null; // &#123;'UID': '123', 'DOUT': [0,1,1,0,1,1,1,1,1,1,1]&#125;</span></span><br><span class="line">    </span><br><span class="line">    data = <span class="built_in">JSON</span>.parse(d.postData.contents);</span><br><span class="line">    <span class="keyword">if</span> (data !== <span class="literal">null</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((data.DOUT !== <span class="literal">undefined</span>) &amp;&amp; (data.DOUT[<span class="number">2</span>] == <span class="literal">true</span>)) &#123;</span><br><span class="line">        mail(<span class="string">"SMART_HOUSE"</span>, <span class="string">"Сработал датчик UID: "</span> + data.UID);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">if</span> ((data.DOUT !== <span class="literal">undefined</span>) &amp;&amp; (data.VCC &lt; <span class="number">588</span>)) &#123;</span><br><span class="line">        mail(<span class="string">"SMART_HOUSE"</span>, <span class="string">"Низкий уровень заряда батареи UID: "</span> + data.UID + <span class="string">" VCC: "</span> + data.VCC);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> ContentService.createTextOutput(<span class="string">"OK"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> ContentService.createTextOutput(<span class="string">"ERROR!\r\nWrong parameters!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    </span><br><span class="line">      Logger.log(e.message);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> ContentService.createTextOutput(<span class="string">"ERROR!\r\n"</span> + e.message);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doGet</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> ContentService.createTextOutput(<span class="string">"OK 007"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mail</span>(<span class="params">subject, content</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> RECIPIENT = <span class="string">"your_email@gmail.com"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    GmailApp.sendEmail(RECIPIENT, subject, content);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-01-31_google_apps_3.png" alt></p>
+<p><strong>Насколько я помню, всегда нужно будет здесь выбирать пункт <em>НОВЫЙ</em> если мы хотим разместить скрипт первый раз, и все остальные разы.</strong></p>
+<p>Доступ ставим анонимный, т.е будет доступно всем, но ссылку посторонним давать не будем, исходя из нашего кода, такой способ публикации достаточно безопасный.</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-02-22_google_apps_4.png" alt></p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-03-03_google_apps_5.png" alt></p>
+<p>Приложение не проверено, но мы его писали сами, если себе доверяем то жмем пройти дальше.</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-03-41_google_apps_6.png" alt></p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-05-16_google_apps_7.png" alt></p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-06-05_google_apps_8.png" alt></p>
+<p><strong>Копируем урл</strong>  </p>
+<p><a href="https://script.google.com/macros/s/AKfycbwCw82lhS-FCPhoj000000001111111111zDNNk-w2dtveoCSJXdrtQVX/exec" target="_blank" rel="noopener">https://script.google.com/macros/s/AKfycbwCw82lhS-FCPhoj000000001111111111zDNNk-w2dtveoCSJXdrtQVX/exec</a></p>
+<p>Этот урл, уже больше не будет меняться в процесе обновления приложения.</p>
+<p>Если переити по нему, то должны увидеть версию скрипта.</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-11-19-07-19_google_apps_9.png" alt></p>
+<p>Проверять эту ссылку лучше в режиме инкогнито, чтобы проверить доступна ли она анонимным пользователям.</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-11-15_18-14-10_check_web_app.png" alt></p>
+<h2 id="Отладка-скрипта-на-Google-Script"><a href="#Отладка-скрипта-на-Google-Script" class="headerlink" title="Отладка скрипта на Google Script"></a>Отладка скрипта на Google Script</h2><p><a href="https://script.google.com/home" target="_blank" rel="noopener">https://script.google.com/home</a></p>
+<p>Прерывается соединение с сервером, но дебаг работает, это может помочь в отладке скрипта.</p>
+<p><img src="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/2019-10-30_22-28-30_google_script_debugger.png" alt></p>
+<!-- 
+
+
+
+Исходный код, будем его модифицировать
+
+```js
+function doPost(d) {
+
+  Logger.log(d);
+
+  // return ContentService.createTextOutput("OK");
+
+  try {
+    var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/-------------your  key---------------/edit");
+    var sheet = ss.getSheetByName("DataLogger");
+    var data;
+
+//    d = {};
+//    d.postData = {};
+//    d.postData.contents = null; // {'UID': '123', 'DOUT': [0,1,1,0,1,1,1,1,1,1,1]}
+
+
+    data = JSON.parse(d.postData.contents);
+    if (data !== null) {
+      var row = sheet.getLastRow() + 1;
+
+      sheet.getRange(row, 1).setValue(data.UID);
+      sheet.getRange(row, 12).setValue(data.VCC);
+
+      sheet.getRange(row, 2).setValue(calcTime("Minsk", 3));
+
+      // sheet.getRange(row, 2).setValue(new Date()).setNumberFormat("dd.mm.yyyy hh:mm:ss");
+
+      if (data.DOUT !== undefined) {
+        for (var i = 0; i <= 8; ++i) {
+          sheet.getRange(row, i + 3).setValue(data.DOUT[i] == true ? "+" : "-").setHorizontalAlignment("center").setFontColor(data.DOUT[i] == true ? "green" : "red");
+        }
+      }
+      SpreadsheetApp.flush();
+
+      if ((data.DOUT !== undefined) && (data.DOUT[2] == true)) {
+        mail("SMART_HOUSE", "Сработал датчик UID: " + data.UID);
+      }
+
+      if ((data.DOUT !== undefined) && (data.VCC < 588)) {
+        mail("SMART_HOUSE", "Низкий уровень заряда батареи UID: " + data.UID + " VCC: " + data.VCC);
+      }
+
+      return ContentService.createTextOutput("OK");
+    } else {
+      return ContentService.createTextOutput("ERROR!\r\nWrong parameters!");
+    }
+  } catch(e) {
+
+      Logger.log(e.message);
+
+    return ContentService.createTextOutput("ERROR!\r\n" + e.message);
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput("OK 006");
+};
+
+function calcTime(city, offset) {
+    var d = new Date();
+    var utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+    var nd = new Date(utc + (3600000*offset));
+    return "The local time in " + city + " is " + nd.toLocaleString();
+}
+
+function mail(subject, content) {
+  const RECIPIENT = "your_email@gmail.com";
+
+  try {
+    GmailApp.sendEmail(RECIPIENT, subject, content);
+    return true;
+  } catch(e) {
+    return false;
+  }
+}
+
+function test() {
+  calcTime("Minsk", 3);
+}
+``` 
+
+
+-->
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2019/10/14/micro-water-leak-sensor-part4-write-server-code/" data-id="ckhz3iy99003829te15jhn6qu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Часть 4 - Датчик протечки воды - Пишем сервер на google scipts",
+        "image": "/2019/10/14/micro-water-leak-sensor-part4-write-server-code/logo_part4.png",
+        "keywords": "attiny",
+        "genre": "Microcontroller avr",
+        "datePublished": "2019-10-14",
+        "dateCreated": "2019-10-14",
+        "dateModified": "2020-11-15",
+        "url": "/2019/10/14/micro-water-leak-sensor-part4-write-server-code/",
+        "description": "Создание приложения и его публикацияЗаходим на сайт и создаем новый проектhttps://script.google.com/home
+
+Если проект уже был создан, и его код нужно обновить, то открываем на редактирование
+
+Отроется",
+        "wordCount": 1000
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+
+        // this.page.url = '/2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+
+        this.page.identifier = '2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+        this.page.title = 'Часть 4 - Датчик протечки воды - Пишем сервер на google scipts';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/10/14/micro-water-leak-sensor-part3-write-program/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Часть 3 - Датчик протечки воды - Пишем программу
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/10/11/web-dev-cache-http-request/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Простое кеширование http запроса с одинаковыми параметрами / Simple caching of http request with the same parameters</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Создание-приложения-и-его-публикация"><span class="toc-number">1.</span> <span class="toc-text">Создание приложения и его публикация</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Отладка-скрипта-на-Google-Script"><span class="toc-number">2.</span> <span class="toc-text">Отладка скрипта на Google Script</span></a></li></ol>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2019/10/14/micro-water-leak-sensor-part4-write-server-code/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+
+        // this.page.url = '/2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+
+        this.page.identifier = '2019/10/14/micro-water-leak-sensor-part4-write-server-code/index.html';
+        this.page.title = 'Часть 4 - Датчик протечки воды - Пишем сервер на google scipts';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

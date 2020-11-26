@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Обновляем прошивку ардуино по воздуху с помощью модуля HC 11 | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content>
+    
+    <meta name="description" content="Обновляем прошивку ардуино по воздуху с помощью модуля HC 11">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Обновляем прошивку ардуино по воздуху с помощью модуля HC 11">
+<meta property="og:url" content="/2020/01/03/micro-avr-update-firmware/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Обновляем прошивку ардуино по воздуху с помощью модуля HC 11">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2019/01/01/!images_common_files/post_logo_avr.png">
+<meta property="og:updated_time" content="2020-11-15T13:09:14.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Обновляем прошивку ардуино по воздуху с помощью модуля HC 11">
+<meta name="twitter:description" content="Обновляем прошивку ардуино по воздуху с помощью модуля HC 11">
+<meta name="twitter:image" content="/2019/01/01/!images_common_files/post_logo_avr.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    uncategorized
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-avr-update-firmware" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Обновляем прошивку ардуино по воздуху с помощью модуля HC 11
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/01/03/micro-avr-update-firmware/" class="article-date">
+            <time datetime="2020-01-03T14:04:01.000Z" itemprop="datePublished">2020-01-03</time>
+        </a>
+    </div>
+
+		
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="Hey, password is required here." />
+    <label for="hbePass">Hey, password is required here.</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="ac33a48544f589e1f42faa4bece64d0ce3ede459a13f358b49e5e49c87d323f2">05882984702f5cf99f9579117489fb1a406d74835a4209420050e35aa4ea5326fdb020616e3548b959668c639ffccf0e8179ad081a6a000d623934b33e963b52dd6c6cf9466fb8b20077bcc6c7658fd8b3a058920d9a0d64e79e510bf0e161b7adf67d4690460be7988608907a9f78bc4630eb8666d24140ff95f2a3450b336f643e02cbdf02eb1024a8a377384af510a8146bce105dc7042023e6a15d67a2828ec8356bce7fd8ef2d1a7c404b6c82fc7165332cea33eb08fd0005219699a626529d6b44b0fd60637ebc2624a7148903a088a5a81885a54fee3a69d2ec6ab845d1379a71349a2e3a68eddd9ed940bb278f8c505e4fc0b706535633e698a8c131f66887fc0fd807131e543456d4e0f7a45f8a887d25f50064be5e0ea938b97f2336ea43025c0edd94434576e44d7300121202fd9ffea095bb48165f1e67d1cf3308d86d4d3e775a09ec1cd2191854cbff84ef752411bcab15749de56c14f101f89f348b03886d59aed8c23f410bd799de9a74d8170c0f55cb984c4abc8f361483f64d768d7f9da6133db13edc5856d9c3b69144bb143eb353e32367868178714254f3df1674c78543a8b8e5bf5ba35bd9fe44d79800ced9a2dc351ba06d06da85a0211f2459f5dca773877803c9e605b233fe6847e7fa5686392a0e2479738c4c0e3a5b7a03d27994c1a9b329df11bf8ce8b3a250df5135d0e30c3ce68c03df70c11334ab34a72983b4a125aa7beb1cbeebaa26509939eb6d62eb94aabc3af5134a63b2bba20e2ea26f3b01db9213b8c635de548b2655046c1c5baeca66912e4ba20cd0c36fc78f483b67fc432db0f21d13bb28fc2116ee44d9d8fac702a26e81a374835425f4a1cf1ff3dd815a5196b7eb784ec58c9a720ec8083dbe7d64b01ae1db96c56d4aa5d0fdd6b5bfecb563c785e8a5fcb413bc3daa1c97e16a5704d326ca43ffe86548baaec503babf08ae835ee70149bf993b4e704c4165a6a1df021e69e73107d011f6409150784b3f6a23831920c92a47d9ba4079946cfdb7b13da23dad7c32ba70f1c2cfa55a5a0ece6caba0b5c042887bf45082e571d3c5db8d1ea0ec27531c9caf180043163f5528012d53947331c81ff9db77facf76918c736a0465965e00509db9f0f9fbcb585d97380fef0f46b153419bb28578fbf42202ee6b0857ad829608f74571096351f5ca875c59f9f532e19424cfee0e6396538901f1d80b1ecf7aba0afa9f25983dc4fec0f186f693e9eb57b2108aad3e482e64198ecca774aadf522c9239415531ddb02a78e851d4ea9cdf9b7f63819d71ad0214dae4fa48786f31ca5339154d5854e28f20dd5e811e912102b79573cd320c7505d50eb8d7164b811e2b2ca85c3c4c724bcf9c4a19c9985feacdfa21b7b1ab73b55f3ab8fd6aff2245cc862bd3513309941f07fbce3e42c12aca9425eccca226e02ad59ea5dfc7b9331c6159cbef51e1b77e2a5496161b129dae38d9499714ff501da2cdd8422fa3aa3c7dc303ff821646627297554a262f35b3f4463e52229998cc798d39dea07f931a4ed0eb4a2abe8360c231c9664d0d25aad9bfa0d9e9d392d5921187fe4d219cccdcaf771ef28c084687560f31abca200ca39d65b33c50c7ba05b85e4193e83ef5c9aae32bdf7830111905b3e293b7f0c8bb64825408971ba8751d2a30b6804b7189457e90dcb271ced2adcf65a1b45dcd1e1d35fcfdb28b504ac1a50af7ee5f221d550a319807ec3cda9a32f89e11a579e4ad35b42f1efab80b6b24f5c38e946dfc4b501ddc47316d195a74a10043c19ef53cf653ab3d0f8c254cc063b74cf7befb11066ce9352be4503fa9327d19fd527946f3248e1107ae365171a36713e1edb1b7a7314fb234aef157445875034f2f1897fd8ffe89d2bd8dc665f81ad5a11b8ff55744206c6a1dafc9819b05d5a8dc083c645a07b6191bf736415831325453ce486dccfb45059c78536d024770674ad4bbf1a2ffadc0f9b0889e95d390be86d8436c6971c4c85ab1784831824b757ebf67f8175e91d8612c5dc88609885533fe5364a5f4e726285772dc6ab3c3721ff11a9b975b56fbbb78520e6f63b8802f5059001a2e3b1d78fe53e769dd51c6ade849f626f089f6d4fe5e0cc8c3d65ac29cd042044895977144c8060f906023b2f22a377c3b7288f1d89c891d517187371bd9fb31814ac1e0a9c2c1a711bfa1c310cb093370bf825e77ceba26d26cb8be5a99369eae74bfb99959f37de3e79ff48e54bc85e34b6290281f42c68141552ed7cd7fa13d45fc5e219477cd664ccd11442d09e62cfba622a26721f8ac33d3cd7d3bfc8f5ec762667d84eb9faa2a0159370f42f5ea3ca7e082a962ed859d4897c1940ad30e562d5008a378bd77a010e53cf61b3d863e03f7f187fa7f899b523fe37847e02e610d20be74b1f968ed2ead6c5e825cbd0122d5a64b1feb6b0a87c124114f238a52f210ec867c28245cc8d91c44745ed30a33d0283df9a250b24460d07fc2d4d32f0264903eb5f0dd876d4fa73f7345a99c487526f45ba68f1520e89dbe7e49e80159d773e3efc6227811162300d8220d3f48650fbd6dbfc2b881d5070e843bf23ae955dbaede4ed26ae61e0051df433aa465ffdf8b93eb3745666e78db7e0e86b9771e80b10b1738806e78cb0dae8fd00d9dd1e278fde04072934cb14833c7fcad8694073742c50f44294b2679a14cc27272cb5c643c767c69ed29e2f91659effb33a2eda7710188efbebd1eb8ab3076e41a21d986a8b62e0d076ca799f48b5a31694e017d78ce9cf31fdc795e1fc112e53ce8bda5bb5cdd6ba01205d4a609442958ae012292faacd978c02e779202614d9d0bae0fedf1f166bdb82a85321c73e88279256c7662f2d14aa1633f1ba8cf2ee20f2d6c631386f06acf2e4263c298a50944a6586b02077c4f6b9d029836121890907f1f0796c6461285a382bd6f2d8cbdf7b2a37cea4122c29f76847764c8dc0ee270ba47cc84a44bd395ee09854ef0272188052a26ebb15a29234f4efbdcec227f809b7636ea6e0dd5f1e28a9c13ad0d96af142b96aab6b252b8f9c5389c6653f0264ac0255bd7fb7a31df4e175c662b5a6023ce059eb85236d2bf335bd32d38901f23c00de874e4234db11bd99972264fd652323327a8cbafda86618e0301fa8d0e1bc087ebb057faa660dc23d070f057499749ac06acd40a4bd8506a3452d7fe76d87a6fd458595694746c0aed61fc576d31264998817af48c089ff342bf430f2646e1c30c1bace53d1ac4570079fffd6336b3bce7fe9c6931c99ff7c046d64a4ff04fa7cb1ac806475b19b67e4f003db97a5155b434813a4585810d677243d402f6f330de19f06745a630406be0b2f31c3acb1455ab6c45038a97cd0e2ac4387cb4102b35d9233200ac16c80b08bffae29810acaa66724503589edad6a871e817320381c38697b2b432189a13e2b049b932f4adccb076bfc99b7a5248009eb6cfcf1ed4c53a99bd5470eaeb472645a1fabae1d4c20fc2df6033e91a400e98ba0129e5a1e8782b507f69c0654eb3963f7d3090becefc334d1f8379dcd3498f0ae2311d3edbabce3226a4d814c0e93121954a0fd99a9f757cbef3708eb3078e8f26332ab9342f33f684922aa02bfd2516726d2c4f11364e98eb549ec59da11d9886fc4f363cb70e1cc334c5a3fc4e600a1a8707e9bb489740da643694064790027b637dc9098a211f233be82ef0999aa7fdfceb290a9e55a492f57c63772d8d376fcf03c0c78cf7860729cf8e8ba785cd8ab5d5d923c8b3a7f076c506c591e138f3172e0e8bb5cfc2a75ff10051db3111458cc236ba51879a9304e257bfa97cb657ea642c7ec3f94dfcba62bd9550284f0b9bec4d0b32b5dce136af4e2a26275f9e90d3ae0591c7ac15e94a6ce38f993dc3799dffe7c9ce67c02dd312bcf85a450d8593c398d5ae107a89b12fccabdb4ba2255181788111641be1146baa4fcab55544cd67a62fe8baec3b447420be5074f2c2b6126b8982f0e9e148d93dec95c3cc3a56772fa1bedb03206e733751500cf0e5b400d5f5e4356024feab4ac3a3ab315cc3b6394fb3b441b9b9723542922078c548c5c4828298de62e46364d9425b0dc6a7e7d91dda072e96e69ee5838ad99fe80b156f208eaf109dc8249a4287e1d1b78580ba2139c65b52d4e16448389cf1715dba8313d2c96e640e3ac9a863a5a19e164b64c893485046eeb51d7a221a7e119432e7f3e555b9af5f808ace45f0d7111ee6689ad8bf80667f1d10ac107086cb014c1376c1e3d1db6e7965d3e5ab6dd614e8589bd386c24ce5907f4703a925bcd258e5b6c5bc17a2228a2651a3937c0e0afb25b6006101ff34abcbc6c7f1eeb1c088ddae76647e78bbb099a4396c3ab5144ef60ca7f04f537461b879f03eff6a5447f097b67c0ccf5c2abeeddc84fff1aa57f60c4d5a9851a22023333c2824b3b14504f494ef7a653842d65bc75615a8179188ca83976dbd17f101b31fb6ad992180c88eb5ca738a2a849f440124cec6cae832ba43341112845f187573561371d643427aa56fdb398490e494de6a4d56002254276ca72ff9c59890dc9cd7b7d2ad97ad4a94460095e2414f799f0cc293db3f6ccec02f5e6ac82e09c06f493f249c87d724a1a0b40c04fb5e5c69239565948d4f7935089532f7b82c9b446ba7bc6453c6fb573c69d67a4be275ba7bd199686e56c650939a20a832eb4d6645cb045f4d0ef51f140cc680e87ec198c793ed7db835cc04c0cb0e9a62fe29ac53c21101ca81b24506a93e5f0ae8a9b196ea5db3cfbb5cf9304a90bc84e1ebb8df152c31a8c5bce85207d4b7a5036410ccd79e268935086bc14efa7159436e860e873c71344c716429fd770d0fc63f39abb86222b614c805fd30a7df03af398ffa84a5641f7bc49f46a6f32809b1d1fdcad587e15fb5ca461ae19e31950189377b45c81d7ef14ce6ac7b05af624cbe9683fa62e901a7c0929140e676b7f5832ec030f751a0cddc817cbf098d672059fd8e6cdb9cbf2386770e7ab96691181bce32a1c658d01940107c837c56b9cc7fb98cde57ae63a639597af417506404d94f838696dbdf229e43b52d400bf943a1cf0dfb7b6ad2b78028421c403a2acf71bd6d3d3d4b9e0bf20095747d51a613cd4d142585d0689717115471627fb1c35b7e0f4991c873d28de5932995d98686dd20f7e1feb0e40f60b1d16a7c6f86caf794a0112d5fafec7917cdcc4cf84aa4a6508c99cec35f83065fd57b79d1629bebb442a888fb23831fd4af13776acbaf310477457f8d1b421fa034bdc1446bfd8c14f9e45919da02b7173a9006241cd0722504b9e40b49c65c45e329b065e9d2d0f53af5c21e1b1e704befdd0337981222853dbb3f795ffe9ae786223276b4289a70e0d378072b42c4e1124a2be6fe2450cfae608a03892598d6f84ac5ef3ded5539c5398c3ef02a69745a504fce16937d479d511d043c93407e3920ddb1cbe27a58b7ae9fc6d99259ac729200d56dd1efe4e9a06ec83b4556a76f3859423b15c7341916e7f0df632b6adc92eaab7f6d8b7a0636d638f32ea2975a325515d97c30d0b7f29524c440f3a5be81af8b18f4fe5b5b2aafd8920686850d9d3a5ee7db9d1a1f93e5a624aac4ecdf8619965f08e01cfd2aa1e5c74cdccd319f88294a7eee3a30ba2372418bc852f81de1722f705316e41be2eefc9b8ae8712637ba39fc12</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2020/01/03/micro-avr-update-firmware/" data-id="ckhz3iy8t001v29te0qm2kw91" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Обновляем прошивку ардуино по воздуху с помощью модуля HC 11",
+        "image": "/2019/01/01/!images_common_files/post_logo_avr.png",
+        "keywords": "",
+        "genre": "",
+        "datePublished": "2020-01-03",
+        "dateCreated": "2020-01-03",
+        "dateModified": "2020-11-15",
+        "url": "/2020/01/03/micro-avr-update-firmware/",
+        "description": "Here's something encrypted, password is required to continue reading.",
+        "wordCount": 64
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/01/03/micro-avr-update-firmware/index.html';
+
+        // this.page.url = '/2020/01/03/micro-avr-update-firmware/index.html';
+
+        this.page.identifier = '2020/01/03/micro-avr-update-firmware/index.html';
+        this.page.title = 'Обновляем прошивку ардуино по воздуху с помощью модуля HC 11';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2020/01/03/micro-avr-update-firmware/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2020/01/03/micro-avr-update-firmware/index.html';
+
+        // this.page.url = '/2020/01/03/micro-avr-update-firmware/index.html';
+
+        this.page.identifier = '2020/01/03/micro-avr-update-firmware/index.html';
+        this.page.title = 'Обновляем прошивку ардуино по воздуху с помощью модуля HC 11';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

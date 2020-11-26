@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Angular 2 - Заметки | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="angular2">
+    
+    <meta name="description" content="Angular 2 - Заметки">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular 2 - Заметки">
+<meta property="og:url" content="/2019/09/10/web-dev-angular-task-and-solutions/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Angular 2 - Заметки">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2019/01/01/!images_common_files/post_logo_code.png">
+<meta property="og:updated_time" content="2020-11-15T13:09:15.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular 2 - Заметки">
+<meta name="twitter:description" content="Angular 2 - Заметки">
+<meta name="twitter:image" content="/2019/01/01/!images_common_files/post_logo_code.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Web/">Web</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Web/angular2/">angular2</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Web/dev/">dev</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-web-dev-angular-task-and-solutions" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Angular 2 - Заметки
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/09/10/web-dev-angular-task-and-solutions/" class="article-date">
+            <time datetime="2019-09-10T13:13:54.000Z" itemprop="datePublished">2019-09-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/angular2/">angular2</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Страница-прыгает-при-обновление-модели"><a href="#Страница-прыгает-при-обновление-модели" class="headerlink" title="Страница прыгает при обновление модели"></a>Страница прыгает при обновление модели</h2><p>Часть кода из pipe   </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">transform(inputList: item[], <span class="attr">filterTrigger</span>: string): item[] &#123;</span><br><span class="line"></span><br><span class="line">      resultList = inputList;</span><br><span class="line">      <span class="comment">// resultList = JSON.parse(JSON.stringify(inputList));</span></span><br></pre></td></tr></table></figure>
+
+<p>Предположение как это работает:  </p>
+<p>Если вернуть новую сслыку на коллекцию, то рендерится с нуля, текущая позиция скрола в браузере будет потеряна, 
+так как список схлопнулся. Если ссылку оставить от прежнего объекта, то элементы остануться и ангуляр 2 перерисует странцу на прежнем месте.</p>
+<p>Для очистки списка используем такой способ. Затем можно вставить элементы в массив, и страница не будет дергаеться.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resultList.length = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">resultList.push(listItem);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Дождаться-когда-отработает-рендеринг-на-элементе"><a href="#Дождаться-когда-отработает-рендеринг-на-элементе" class="headerlink" title="Дождаться когда отработает рендеринг на элементе"></a>Дождаться когда отработает рендеринг на элементе</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">  private _innerHtmlBlock;</span><br><span class="line">  private _lastClickedIndex = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  @ViewChildren(<span class="string">'innerHtmlBlock'</span>)</span><br><span class="line">  <span class="keyword">set</span> innerHtmlBlock(value) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'set innerHtmlBlock'</span>);</span><br><span class="line">    <span class="keyword">this</span>._innerHtmlBlock = value;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.inputConfig[<span class="keyword">this</span>._lastClickedIndex].opened) &#123;</span><br><span class="line">      <span class="keyword">this</span>.cssValue = <span class="keyword">this</span>.getNewCssValue(<span class="keyword">this</span>._lastClickedIndex);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// because the css value we changed above</span></span><br><span class="line">    **  <span class="keyword">this</span>.changeDetector.detectChanges();**</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> innerHtmlBlock() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'get innerHtmlBlock'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>._innerHtmlBlock;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">when [hidden]=<span class="string">"true_or_false"</span></span><br><span class="line">dont work</span><br><span class="line">--</span><br><span class="line">work only <span class="keyword">with</span> ngIf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Варианты-решения-ExpressionChangedAfterItHasBeenCheckedError"><a href="#Варианты-решения-ExpressionChangedAfterItHasBeenCheckedError" class="headerlink" title="Варианты решения ExpressionChangedAfterItHasBeenCheckedError"></a>Варианты решения ExpressionChangedAfterItHasBeenCheckedError</h2><p><a href="https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked" target="_blank" rel="noopener">https://stackoverflow.com/questions/34364880/expression-has-changed-after-it-was-checked</a></p>
+<p>ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked on ng 4<br><a href="https://github.com/angular/angular/issues/17572" target="_blank" rel="noopener">https://github.com/angular/angular/issues/17572</a></p>
+<blockquote>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">But, I found workaround.</span><br><span class="line">Injection <span class="keyword">of</span> ChangeDetectionRef, and call detectionChanges() <span class="function"><span class="keyword">function</span> <span class="title">at</span> <span class="title">error</span> <span class="title">point</span>.</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="title">constructor</span>(<span class="params">private cdr: ChangeDetectionRef</span>) </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">onChange(): <span class="keyword">void</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.val += <span class="number">1</span>; <span class="comment">// &lt;- get error after</span></span><br><span class="line">  <span class="keyword">this</span>.cdr.detectionChanges();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ошибка-ExpressionChangedAfterItHasBeenCheckedError-при-добавлении-элемента-формы"><a href="#Ошибка-ExpressionChangedAfterItHasBeenCheckedError-при-добавлении-элемента-формы" class="headerlink" title="Ошибка ExpressionChangedAfterItHasBeenCheckedError при добавлении элемента формы"></a>Ошибка ExpressionChangedAfterItHasBeenCheckedError при добавлении элемента формы</h2><p>Есть форма с валидацией, в форме есть массив элементов , есть кнопка сабмит,<br>если заполнить поля в форме, и нажать сабмит, то форма будет провалидирована.<br>Если сейчас добавить элемент в массив, который будет с не заполненными полями, то форма станет не валидной.<br>НО при этом будет ошибка   </p>
+<p>MainControl.html:19 ERROR Error: ExpressionChangedAfterItHasBeenCheckedError:<br>Expression has changed after it was checked. Previous value: ‘ngIf: false’. Current value: ‘ngIf: true’.  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p-panel</span> <span class="attr">header</span>=<span class="string">"Title"</span> *<span class="attr">ngIf</span>=<span class="string">"listControl.controls.length"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">formArrayName</span>=<span class="string">"listControlElements"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let item of listControl.controls; let i=index"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">app-ControlValueAccessorComponent</span> </span></span><br><span class="line"><span class="tag">          <span class="attr">formControlName</span>=<span class="string">"&#123;&#123;i&#125;&#125;"</span> [<span class="attr">parentForm</span>]=<span class="string">"mainForm"</span> (<span class="attr">onInnerEvent</span>)=<span class="string">"checkPostion($event)"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">app-ControlValueAccessorComponent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p-panel</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Разница-между-changeDetector-и-markForCheck"><a href="#Разница-между-changeDetector-и-markForCheck" class="headerlink" title="Разница между changeDetector и markForCheck"></a>Разница между changeDetector и markForCheck</h2><p>Все, что вам нужно знать об обнаружении изменений в Angular<br><a href="https://habr.com/ru/post/327004/" target="_blank" rel="noopener">https://habr.com/ru/post/327004/</a></p>
+<h2 id="Upload-file-to-server"><a href="#Upload-file-to-server" class="headerlink" title="Upload file to server"></a>Upload file to server</h2><p>FormData<br><a href="https://learn.javascript.ru/formdata" target="_blank" rel="noopener">https://learn.javascript.ru/formdata</a></p>
+<p><a href="https://stackoverflow.com/questions/40214772/file-upload-in-angular" target="_blank" rel="noopener">https://stackoverflow.com/questions/40214772/file-upload-in-angular</a></p>
+<p><a href="https://stackoverflow.com/questions/42546594/form-validation-not-happening-on-angular-2-for-input-type-file" target="_blank" rel="noopener">https://stackoverflow.com/questions/42546594/form-validation-not-happening-on-angular-2-for-input-type-file</a></p>
+<!-- 
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">"uplode_file"</span> <span class="attr">type</span>=<span class="string">"file"</span> (<span class="attr">change</span>)=<span class="string">"fileChange($event)"</span> <span class="attr">formControlName</span>=<span class="string">"fileUpload"</span> <span class="attr">placeholder</span>=<span class="string">"Upload file"</span> <span class="attr">accept</span>=<span class="string">".txt"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">'input-field-block'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> (<span class="attr">click</span>)=<span class="string">"onOpenDialog()"</span> <span class="attr">class</span>=<span class="string">"btn btn-custom"</span>&gt;</span> Browse <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"mainForm.invalid &amp;&amp; mainForm.submitted &amp;&amp; mainForm.touched"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">class</span>=<span class="string">"invalid-message"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngIf</span>=<span class="string">"fileUploadControl.errors?.required"</span>&gt;</span></span><br><span class="line">      Field is required</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line">  onOpenDialog() &#123;</span><br><span class="line">    (<span class="built_in">document</span>.querySelector(<span class="string">'#uplode_file'</span>) <span class="keyword">as</span> any).click();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  fileChange(event) &#123;</span><br><span class="line">    <span class="keyword">const</span> fileList: FileList = event.target.files;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (fileList.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> file: File = fileList[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.selectedFileToUpload = file;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="string">``</span><span class="string">` --&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;!-- </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">https://embed.plnkr.co/aj6VjL5CbZuwHq1MoA8I/</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">import &#123;Component&#125; from '@angular/core'</span></span><br><span class="line"><span class="string">import &#123;FormGroup, FormControl&#125; from '@angular/forms'</span></span><br><span class="line"><span class="string">import &#123;FileValidator&#125; from './file-input.validator'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@Component(&#123;</span></span><br><span class="line"><span class="string">  selector: 'reactive-form',</span></span><br><span class="line"><span class="string">  template: `</span></span><br><span class="line">      &lt;h3&gt;Reactive forms demo&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">      </span></span><br><span class="line"><span class="regexp">      &lt;form [formGroup]="frm"&gt;</span></span><br><span class="line"><span class="regexp">        &lt;input type="file" formControlName="file" /</span>&gt;</span><br><span class="line">        &lt;p *ngIf=<span class="string">"frm.controls.file.errors?.required"</span> style=<span class="string">"color: red"</span>&gt;This field is required!<span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">        </span><br><span class="line">        &lt;div&gt;</span><br><span class="line">          &lt;button type=<span class="string">"submit"</span> [disabled]=<span class="string">"!frm.valid"</span>&gt;Submit&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>div&gt;</span><br><span class="line">      &lt;<span class="regexp">/form&gt;</span></span><br><span class="line"><span class="regexp">  `,</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp">export class ReactiveFormComponent &#123;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  frm = new FormGroup(&#123;&#125;);</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  constructor() &#123;</span></span><br><span class="line"><span class="regexp">    this.buildForm();</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">  private buildForm() &#123;</span></span><br><span class="line"><span class="regexp">      this.frm = new FormGroup(&#123;</span></span><br><span class="line"><span class="regexp">          file: new FormControl("", [FileValidator.validate])</span></span><br><span class="line"><span class="regexp">      &#125;);</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;       </span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">import &#123;Component&#125; from '@angular/</span>core<span class="string">'</span></span><br><span class="line"><span class="string">import &#123;FormGroup, FormControl&#125; from '</span>@angular/forms<span class="string">'</span></span><br><span class="line"><span class="string">import &#123;FileValidator&#125; from '</span>./file-input.validator<span class="string">'</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@Component(&#123;</span></span><br><span class="line"><span class="string">  selector: '</span>template-driven-form<span class="string">',</span></span><br><span class="line"><span class="string">  template: `</span></span><br><span class="line"><span class="string">      &lt;h3&gt;Template driven forms demo&lt;/h3&gt;</span></span><br><span class="line"><span class="string">      </span></span><br><span class="line"><span class="string">      &lt;form #f="ngForm"&gt;</span></span><br><span class="line"><span class="string">        &lt;input type="file" [ngModel]="fileContent" name="file" #file="ngModel" requireFile/&gt;</span></span><br><span class="line"><span class="string">        &lt;p *ngIf="!file.valid" style="color: red"&gt;This field is required!&lt;/p&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &lt;div&gt;</span></span><br><span class="line"><span class="string">          &lt;button type="submit" [disabled]="!f.valid"&gt;Submit&lt;/button&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">      &lt;/form&gt;</span></span><br><span class="line"><span class="string">  `,</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string">export class TemplateDrivenFormComponent &#123;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  fileContent: any;</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  constructor() &#123;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;      </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">import &#123;Directive&#125; from "@angular/core";</span></span><br><span class="line"><span class="string">import &#123;NG_VALUE_ACCESSOR, ControlValueAccessor&#125; from "@angular/forms";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@Directive(&#123;</span></span><br><span class="line"><span class="string">    selector: "input[type=file]",</span></span><br><span class="line"><span class="string">    host : &#123;</span></span><br><span class="line"><span class="string">        "(change)" : "onChange($event.target.files)",</span></span><br><span class="line"><span class="string">        "(blur)": "onTouched()"</span></span><br><span class="line"><span class="string">    &#125;,</span></span><br><span class="line"><span class="string">    providers: [</span></span><br><span class="line"><span class="string">        &#123; provide: NG_VALUE_ACCESSOR, useExisting: FileValueAccessor, multi: true &#125;</span></span><br><span class="line"><span class="string">    ]</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string">export class FileValueAccessor implements ControlValueAccessor &#123;</span></span><br><span class="line"><span class="string">    value: any;</span></span><br><span class="line"><span class="string">    onChange = (_) =&gt; &#123;&#125;;</span></span><br><span class="line"><span class="string">    onTouched = () =&gt; &#123;&#125;;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    writeValue(value) &#123;&#125;</span></span><br><span class="line"><span class="string">    registerOnChange(fn: any) &#123; this.onChange = fn; &#125;</span></span><br><span class="line"><span class="string">    registerOnTouched(fn: any) &#123; this.onTouched = fn; &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">import &#123;Directive&#125; from "@angular/core";</span></span><br><span class="line"><span class="string">import &#123;NG_VALIDATORS, Validator, FormControl&#125; from "@angular/forms";</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">@Directive(&#123;</span></span><br><span class="line"><span class="string">    selector: "[requireFile]",</span></span><br><span class="line"><span class="string">    providers: [</span></span><br><span class="line"><span class="string">        &#123; provide: NG_VALIDATORS, useExisting: FileValidator, multi: true &#125;,</span></span><br><span class="line"><span class="string">    ]</span></span><br><span class="line"><span class="string">&#125;)</span></span><br><span class="line"><span class="string">export class FileValidator implements Validator &#123;</span></span><br><span class="line"><span class="string">    static validate(c: FormControl): &#123;[key: string]: any&#125; &#123;</span></span><br><span class="line"><span class="string">      return c.value == null || c.value.length == 0 ? &#123; "required" : true&#125; : null;</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    validate(c: FormControl): &#123;[key: string]: any&#125; &#123;</span></span><br><span class="line"><span class="string">      return FileValidator.validate(c);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">--&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## Спинер не показывается</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Проблема в том, что есть код время выполнения которого 2 секунды, весь код синхронный,</span></span><br><span class="line"><span class="string">флаг для показа спинера выставляется в начале, но спинер не рендерится, так как нету события по которому можно перерисоваться UI.</span></span><br><span class="line"><span class="string">В конце кода убираем флаг спинера, и получаем, что спинер за все время так и не был показан пользователю.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Если обернуть долго выполняющийся код в setTimeout, то спинер будет показан. Но появятся дополнительные мигания страницы, так как будет запущена лишняя</span></span><br><span class="line"><span class="string">проресовка только лишь с частью данных.   </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Вопрос можно ли обойтись без setTimeout ?   </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">this.elementRef.nativeElement.querySelectorAll('</span>app-spinner<span class="string">')[0].hidden = false;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Этот код примениться сразу к элементу, в момент выполнения.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">## primefaces --&gt; datascroller</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">В новых версиях доки его нету   </span></span><br><span class="line"><span class="string">в старой есть   </span></span><br><span class="line"><span class="string">https://www.primefaces.org/primeng-5.2.7/#/datascroller   </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">https://github.com/primefaces/primeng/blob/7.0.0-beta.1/src/app/components/datascroller/datascroller.ts</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">**bufferValue - получается это величина, которая показывает, за какое расстояние до конца элемента, нужно уже подгрузить новые.**</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">```html</span></span><br><span class="line"><span class="string"> &lt;div class="wrapper" #controlWrapper&gt;</span></span><br><span class="line"><span class="string">    &lt;p-dataScroller [value]="data | userPipe: pipeTrigger | sort:sortBy" [rows]="10" [buffer]="bufferValue"&gt;</span></span><br><span class="line"><span class="string">          &lt;ng-template let-i="index" let-quote pTemplate="item_value"&gt;</span></span><br><span class="line"><span class="string">              &#123;&#123; item_value &#125;&#125;</span></span><br><span class="line"><span class="string">          &lt;/ng-template&gt;</span></span><br><span class="line"><span class="string">    &lt;/p-dataScroller&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>bufferValue<br>buffer    number    0.9    Number of buffer size.   </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">DataScroller.prototype.onInlineScroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> scrollTop = <span class="keyword">this</span>.contentViewChild.nativeElement.scrollTop;</span><br><span class="line">    <span class="keyword">var</span> scrollHeight = <span class="keyword">this</span>.contentViewChild.nativeElement.scrollHeight;</span><br><span class="line">    <span class="keyword">var</span> viewportHeight = <span class="keyword">this</span>.contentViewChild.nativeElement.clientHeight;</span><br><span class="line">    <span class="keyword">if</span> ((scrollTop &gt;= ((scrollHeight * <span class="keyword">this</span>.buffer) - (viewportHeight)))) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.shouldLoad()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.zone.run(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                _this.load();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">DataScroller.prototype.onWindowScroll = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">var</span> docBody = <span class="built_in">document</span>.body;</span><br><span class="line">    <span class="keyword">var</span> docElement = <span class="built_in">document</span>.documentElement;</span><br><span class="line">    <span class="keyword">var</span> scrollTop = (<span class="built_in">window</span>.pageYOffset || <span class="built_in">document</span>.documentElement.scrollTop);</span><br><span class="line">    <span class="keyword">var</span> winHeight = docElement.clientHeight;</span><br><span class="line">    <span class="keyword">var</span> docHeight = <span class="built_in">Math</span>.max(docBody.scrollHeight, docBody.offsetHeight, winHeight, docElement.scrollHeight, docElement.offsetHeight);</span><br><span class="line">    <span class="keyword">if</span> (scrollTop &gt;= ((docHeight * <span class="keyword">this</span>.buffer) - winHeight)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.shouldLoad()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.zone.run(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                _this.load();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Name    Type    Default    Description</p>
+<p><strong>loader</strong>    any    null    Reference of the target element whose click event loads the data instead of scrolling.</p>
+<!-- 
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">@HostListener(<span class="string">'window:scroll'</span>, [])</span><br><span class="line">onWindowScroll() &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// html is not ready</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="keyword">this</span>.controlWrapper) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> scrollTop = <span class="built_in">window</span>.pageYOffset || <span class="built_in">document</span>.documentElement.scrollTop;</span><br><span class="line">  <span class="keyword">const</span> winHeight = <span class="built_in">document</span>.documentElement.clientHeight;</span><br><span class="line">  <span class="keyword">const</span> docHeight = <span class="built_in">Math</span>.max(<span class="built_in">document</span>.body.scrollHeight, <span class="built_in">document</span>.body.offsetHeight, winHeight, <span class="built_in">document</span>.documentElement.scrollHeight, <span class="built_in">document</span>.documentElement.offsetHeight);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> scrollBuffer = (<span class="keyword">this</span>.controlWrapper.nativeElement.scrollHeight + winHeight / <span class="number">2</span>) / docHeight;</span><br><span class="line">  <span class="keyword">this</span>.bufferValue = bufferValue;</span><br></pre></td></tr></table></figure>
+
+<pre><code>// If the page in the component has changed, then you need to show more elements
+// https://www.primefaces.org/primeng-6.1.6/#/datascroller
+// buffer    number    0.9    Number of buffer size.
+// the buffer parameter is responsible for how soon the component makes a request for new data</code></pre><p> –&gt;</p>
+<h2 id="Обратиться-к-полям-контрола"><a href="#Обратиться-к-полям-контрола" class="headerlink" title="Обратиться к полям контрола"></a>Обратиться к полям контрола</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p-dataScroller</span> #<span class="attr">stmDataScroller</span> <span class="attr">...........</span>&gt;</span></span><br><span class="line"></span><br><span class="line">@ViewChild('dataScroller') private varDataScroller;</span><br></pre></td></tr></table></figure>
+
+<p><img src="2019-12-06-17-06-52_ang_ref.png" alt=""></p>
+<h2 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h2><p>  @HostListener(‘window:resize’, [])
+  onWindowResize() {</p>
+<pre><code>clearTimeout(this._timeout);
+
+this._timeout = setTimeout(() =&gt; {
+    // some difficult operation
+}, 100);</code></pre><p>  }</p>
+<h2 id="Angular-Style"><a href="#Angular-Style" class="headerlink" title="Angular Style"></a>Angular Style</h2><p><a href="https://alligator.io/angular/style-binding-ngstyle-angular/">https://alligator.io/angular/style-binding-ngstyle-angular/</a></p>
+<p [style.font-size.px]="true ? '20' : '1'">
+  text
+</p>
+
+
+
+<h2 id="Testing"><a href="#Testing" class="headerlink" title="Testing"></a>Testing</h2><p><a href="https://angular.io/guide/http#testing-http-requests">https://angular.io/guide/http#testing-http-requests</a></p>
+<!-- 
+
+.overrideComponent(HeroDetailComponent, {
+  set: {
+    providers: [
+      { provide: HeroDetailService, useClass: HeroDetailServiceSpy }
+    ]
+  }
+}) 
+
+-->
+
+
+
+
+<!-- 
+
+
+Async test with fakeAsync()
+To use fakeAsync() functionality, you must import zone.js/dist/zone-testing in your test setup file. If you created your project with the Angular CLI, zone-testing is already imported in src/test.ts.
+
+The following test confirms the expected behavior when the service returns an ErrorObservable.
+
+content_copy
+it('should display error when TwainService fails', fakeAsync(() => {
+  // tell spy to return an error observable
+  getQuoteSpy.and.returnValue(
+    throwError('TwainService test failure'));
+
+  fixture.detectChanges(); // onInit()
+  // sync spy errors immediately after init
+
+  tick(); // flush the component's setTimeout()
+
+  fixture.detectChanges(); // update errorMessage within setTimeout()
+
+  expect(errorMessage()).toMatch(/test failure/, 'should display error');
+  expect(quoteEl.textContent).toBe('...', 'should show placeholder');
+})); 
+
+
+
+Limitation: The fakeAsync() function won't work if the test body makes an XMLHttpRequest (XHR) call. XHR calls within a test are rare, but if you need to call XHR, see async(), below.
+
+-->
+
+
+
+
+
+
+<!-- 
+
+Unit test: Specify and test one point of the contract of single method of a class. This should have a very narrow and well defined scope. Complex dependencies and interactions to the outside world are stubbed or mocked.
+
+Integration test: Test the correct inter-operation of multiple subsystems. There is whole spectrum there, from testing integration between two classes, to testing integration with the production environment.
+
+Smoke test (aka Sanity check): A simple integration test where we just check that when the system under test is invoked it returns normally and does not blow up.
+
+Smoke testing is both an analogy with electronics, where the first test occurs when powering up a circuit (if it smokes, it's bad!)...
+... and, apparently, with plumbing, where a system of pipes is literally filled by smoke and then checked visually. If anything smokes, the system is leaky.
+Regression test: A test that was written when a bug was fixed. It ensures that this specific bug will not occur again. The full name is "non-regression test". It can also be a test made prior to changing an application to make sure the application provides the same outcome.
+
+To this, I will add:
+
+Acceptance test: Test that a feature or use case is correctly implemented. It is similar to an integration test, but with a focus on the use case to provide rather than on the components involved.
+
+System test: Tests a system as a black box. Dependencies on other systems are often mocked or stubbed during the test (otherwise it would be more of an integration test).
+
+Pre-flight check: Tests that are repeated in a production-like environment, to alleviate the 'builds on my machine' syndrome. Often this is realized by doing an acceptance or smoke test in a production like environment.
+
+ -->
+
+
+<p><a href="https://angular.io/guide/testing#component-dom-testing" target="_blank" rel="noopener">https://angular.io/guide/testing#component-dom-testing</a></p>
+<blockquote>
+<p>A cold observable doesn’t produce values until you subscribe to it. Most of your application observables are cold. All HttpClient methods return cold observables.
+A hot observable is already producing values before you subscribe to it. The Router.events observable, which reports router activity, is a hot observable.</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">nameInput.dispatchEvent(newEvent(<span class="string">'input'</span>));</span><br><span class="line">fixture.detectChanges();</span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="comment">// The safest way to get the injected service, the way that always works, is to get it from the injector of the component-under-test. </span></span><br><span class="line"><span class="comment">// The component injector is a property of the fixture's DebugElement.</span></span><br><span class="line"><span class="comment">// WelcomeComponent's injector</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// UserService actually injected into the component</span></span><br><span class="line">userService = fixture.debugElement.injector.get(UserService);</span><br><span class="line"></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h2 id="Обновить-nodejs-и-пофиксить-node-sass"><a href="#Обновить-nodejs-и-пофиксить-node-sass" class="headerlink" title="Обновить nodejs и пофиксить node-sass"></a>Обновить nodejs и пофиксить node-sass</h2><p>Перешел с nodejs8 на 12, и проект ангуляра2 перестал собираться.</p>
+<p>Error: Node Sass does not yet support your current environment: Linux 64-bit<br><a href="https://github.com/sass/node-sass/issues/1651" target="_blank" rel="noopener">https://github.com/sass/node-sass/issues/1651</a></p>
+<blockquote>
+<p>npm uninstall node-sass -g &amp;&amp; node cache clean &amp;&amp; node install node-sass</p>
+</blockquote>
+<p>Как победить Node Sass does not yet support your current environment: Linux 64-bit with Unsupported runtime (64)?<br><a href="https://qna.habr.com/q/701855" target="_blank" rel="noopener">https://qna.habr.com/q/701855</a></p>
+<p><a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2019/09/10/web-dev-angular-task-and-solutions/" data-id="ckhz3iy9l004c29te4skqqk3f" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Angular 2 - Заметки",
+        "image": "/2019/01/01/!images_common_files/post_logo_code.png",
+        "keywords": "angular2",
+        "genre": "Web angular2 dev",
+        "datePublished": "2019-09-10",
+        "dateCreated": "2019-09-10",
+        "dateModified": "2020-11-15",
+        "url": "/2019/09/10/web-dev-angular-task-and-solutions/",
+        "description": "Страница прыгает при обновление моделиЧасть кода из pipe   
+1234transform(inputList: item[], filterTrigger: string): item[] &#123;      resultList = inputList;      // resultList = JSON.parse(JSON.str",
+        "wordCount": 3326
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/09/10/web-dev-angular-task-and-solutions/index.html';
+
+        // this.page.url = '/2019/09/10/web-dev-angular-task-and-solutions/index.html';
+
+        this.page.identifier = '2019/09/10/web-dev-angular-task-and-solutions/index.html';
+        this.page.title = 'Angular 2 - Заметки';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2019/09/12/blog-testing-second-post/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            second_post
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/09/10/web-dev-js-useful-snippets/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">web-dev-js-useful-snippets</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Страница-прыгает-при-обновление-модели"><span class="toc-number">1.</span> <span class="toc-text">Страница прыгает при обновление модели</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Дождаться-когда-отработает-рендеринг-на-элементе"><span class="toc-number">2.</span> <span class="toc-text">Дождаться когда отработает рендеринг на элементе</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Варианты-решения-ExpressionChangedAfterItHasBeenCheckedError"><span class="toc-number">3.</span> <span class="toc-text">Варианты решения ExpressionChangedAfterItHasBeenCheckedError</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ошибка-ExpressionChangedAfterItHasBeenCheckedError-при-добавлении-элемента-формы"><span class="toc-number">4.</span> <span class="toc-text">Ошибка ExpressionChangedAfterItHasBeenCheckedError при добавлении элемента формы</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Разница-между-changeDetector-и-markForCheck"><span class="toc-number">5.</span> <span class="toc-text">Разница между changeDetector и markForCheck</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Upload-file-to-server"><span class="toc-number">6.</span> <span class="toc-text">Upload file to server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Обновить-nodejs-и-пофиксить-node-sass"><span class="toc-number">7.</span> <span class="toc-text">Обновить nodejs и пофиксить node-sass</span></a></li></ol>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2019/09/10/web-dev-angular-task-and-solutions/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/09/10/web-dev-angular-task-and-solutions/index.html';
+
+        // this.page.url = '/2019/09/10/web-dev-angular-task-and-solutions/index.html';
+
+        this.page.identifier = '2019/09/10/web-dev-angular-task-and-solutions/index.html';
+        this.page.title = 'Angular 2 - Заметки';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

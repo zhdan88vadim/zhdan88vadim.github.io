@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>Прошивка бутлодера в atmega8 | Пре-продакшн</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="atmega8">
+    
+    <meta name="description" content="Прошивка бутлодера в atmega8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Прошивка бутлодера в atmega8">
+<meta property="og:url" content="/2019/12/28/micro-avr-atmega8-optiboot/index.html">
+<meta property="og:site_name" content="Пре-продакшн">
+<meta property="og:description" content="Прошивка бутлодера в atmega8">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="/2019/01/01/!images_common_files/post_logo_avr.png">
+<meta property="og:updated_time" content="2020-11-15T13:09:14.916Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Прошивка бутлодера в atmega8">
+<meta name="twitter:description" content="Прошивка бутлодера в atmega8">
+<meta name="twitter:image" content="/2019/01/01/!images_common_files/post_logo_avr.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-70367019-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/">House</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/electricity/">electricity</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/House/repairs/">repairs</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/">MLB</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/MLB/American-League/">American League</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/">Microcontroller</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/avr/">avr</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Microcontroller/wifi/">wifi</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/">Overview-china</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Overview-china/electricity/">electricity</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Rivalries/">Rivalries</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/">Sports</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Sports/Baseball/">Baseball</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/">Web</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/angular2/">angular2</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Web/dev/">dev</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/pcb/">pcb</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/what-s-inside/">what's-inside</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Microcontroller/avr/">avr</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-micro-avr-atmega8-optiboot" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Прошивка бутлодера в atmega8
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="article-date">
+            <time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/atmega8/">atmega8</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>Задача:</strong>  </p>
+<p>Записать загрузчик в атмега8.</p>
+<!-- 
+**Пожелание:**  
+Оставить возможность для расширения функционала, скажем, чтобы этот же датчик легко можно было переделать под другое событие срабатывания.
+Например отрытие/закрытие окна или двери, окончание стирки стиральной машины, срабатывание пожарного датчика и т.д. 
+-->
+
+<p><strong>История:</strong>  </p>
+<p>После attiny13 появилось желание поработать с контроллером, помощнее, чем attiny13, но дешевле и чуть проще чем atmega328, которая используется
+на ардуино. Выбор пал на atmega8, это один из самых ходовых котроллеров.
+Покупая микросхему можно с ней работать и без загрузчика, прошивать через программатор, и все будет хорошо, даже памяти под программу будет чуть больше.</p>
+<p>Зачем тогда пытаться туда залить загрузчик?)  </p>
+<ol>
+<li>Для того, чтобы иметь возможность загружать программу скажем по воздуху, есть приемо-передатчики образующие прозрачный RS232 мост. Если зашить загрузчик, и подключить передатчик, а на второй стороне в передатчик слать команды на прошивку, то модуль прошьется удаленно. Это очень удобно для обновления прошивки, если устройство не просто снять и принести к компьютеру.</li>
+<li>Так же, можно сделать сеть по RS232 или RS485 и прошивать МК удаленно по сети.</li>
+</ol>
+<p>Загрузчиков, он же бутлодер, их много, один из лучших optiboot.</p>
+<p>Бутлодер optiboot не компилировал, а взял уже готовый из ардуиновского пакета MiniCore. Этот же загрузчик можно прошить из ArduinoIDE, но вспомнил, что в инете писали, фьюзы для некоторых режимов atmega8 там стоят не верные, для Atmega328 вроде как все должно быть ок.
+Надежнее как всегда, понять как с этим работать напрямую, поэтому нужно углубиться в теорию.</p>
+<h3 id="Полезные-ссылки-по-бутлодерам"><a href="#Полезные-ссылки-по-бутлодерам" class="headerlink" title="Полезные ссылки по бутлодерам"></a>Полезные ссылки по бутлодерам</h3><p>Про Arduino IDE, загрузчики (bootloader), программаторы (avrdude.exe), фьюзы, HEX-файлы. В одном флаконе. Не претендуя на оригинальность.<br><a href="https://www.radiokot.ru/artfiles/6391/" target="_blank" rel="noopener">https://www.radiokot.ru/artfiles/6391/</a>   </p>
+<p>Bootloader для AVR  - RADIOSOFT<br><a href="https://www.youtube.com/watch?v=FgYwAayu-LI&amp;feature=youtu.be" target="_blank" rel="noopener">https://www.youtube.com/watch?v=FgYwAayu-LI&amp;feature=youtu.be</a>  </p>
+<p>Khazama AVR Programmer часть 2 ФЬЮЗЫ<br><a href="https://www.youtube.com/watch?v=uClxsTMe0es" target="_blank" rel="noopener">https://www.youtube.com/watch?v=uClxsTMe0es</a></p>
+<p>ПЕРЕПРОШИВКА БУТЛОАДЕРА В ARDUINO НА OPTIBOOT<br><a href="https://blog.instalator.ru/archives/798" target="_blank" rel="noopener">https://blog.instalator.ru/archives/798</a></p>
+<p><a href="http://homes-smart.ru/index.php/oborudovanie/arduino/avr-zagruzchik" target="_blank" rel="noopener">http://homes-smart.ru/index.php/oborudovanie/arduino/avr-zagruzchik</a></p>
+<!-- 
+Конструктор загрузчика:
+
+Внешний кварц    Внутренний генератор Watchdog 256кГц
+Частота генератора:    
+1000000
+ Использовать делитель на 8.
+Фактическая частота:    1000000
+Внутренний генератор:     Только для Atmega 8/16/32.
+Модель м/к:    
+    Программный UART. Порт:  RX:  TX:  (В тестовом режиме.)
+    Отключить светодиод загрузчика.
+Размер прошивки: 476 байт.
+Микроконтроллер: atmega8
+Частота микроконтроллера: 1 MHz
+Скачать файл hex или через консоль Linux: wget http://designer.homes-smart.ru/boot/out/a8_1MHz_a1_dc.hex
+
+Блок файла boards.txt для Arduino IDE:
+
+a8_1MHz.name=atmega8 (1 MHz)
+a8_1MHz.upload.protocol=arduino
+a8_1MHz.upload.maximum_size=7680
+a8_1MHz.upload.speed=9600
+a8_1MHz.bootloader.low_fuses=0xa1
+a8_1MHz.bootloader.high_fuses=0xdc
+a8_1MHz.bootloader.path=optiboot
+a8_1MHz.bootloader.file=a8_1MHz_a1_dc.hex
+a8_1MHz.build.mcu=atmega8
+a8_1MHz.build.f_cpu=1000000L
+a8_1MHz.build.core=arduino
+a8_1MHz.build.variant=standard 
+
+
+Прошивка через Arduino: avrdude -c avrisp -P COM1 -b 19200 -p atmega8 -U flash:w:a8_1MHz_a1_dc.hex -U lfuse:w:0xa1:m -U hfuse:w:0xdc:m
+Прошивка через USBasp: avrdude -c usbasp -p atmega8 -U flash:w:a8_1MHz_a1_dc.hex -U lfuse:w:0xa1:m -U hfuse:w:0xdc:m
+
+
+-->
+
+<h3 id="Установка-MiniCore"><a href="#Установка-MiniCore" class="headerlink" title="Установка MiniCore"></a>Установка MiniCore</h3><p>После установки дополнения к ArduinoIDE по адресу выше, можно найти скомпилированные загрузчики.   </p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-55-48_arduino_ide_optiboot_board.png" alt></p>
+<p>Путь к MiniCore библиотеке, у вас будет похожий. По нему можно будет увидеть много папок, каждый из которых соответствует частоте МК.
+Когда с частотой определились, то заходим в папку, там будут файлы для разных скоростей бутлодера.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">c:\Users\admin\AppData\Local\Arduino15\packages\MiniCore\hardware\avr\<span class="number">2.0</span><span class="number">.3</span>\bootloaders\optiboot_flash\bootloaders\atmega8\</span><br><span class="line"></span><br><span class="line"><span class="number">1000000L</span>\  </span><br><span class="line"><span class="number">11059200L</span>\  </span><br><span class="line"><span class="number">12000000L</span>\  </span><br><span class="line"><span class="number">14745600L</span>\  </span><br><span class="line"><span class="number">16000000L</span>\  </span><br><span class="line"><span class="number">18432000L</span>\  </span><br><span class="line"><span class="number">1843200L</span>\  </span><br><span class="line"><span class="number">20000000L</span>\  </span><br><span class="line"><span class="number">2000000L</span>\  </span><br><span class="line"><span class="number">24000000L</span>\  </span><br><span class="line"><span class="number">3686400L</span>\  </span><br><span class="line"><span class="number">4000000L</span>\  </span><br><span class="line"><span class="number">7372800L</span>\  </span><br><span class="line"><span class="number">8000000L</span>\</span><br></pre></td></tr></table></figure>
+
+<h3 id="Прошивка-бутлодера-в-atmega8"><a href="#Прошивка-бутлодера-в-atmega8" class="headerlink" title="Прошивка бутлодера в atmega8"></a>Прошивка бутлодера в atmega8</h3><p>Для конфигурация без внешнего кварца, на 1 мгц, берем соответсвующий файл <strong>optiboot_flash_atmega8_UART0_9600_1000000L.hex</strong></p>
+<p>Чтобы бутлодер успешно работал, нужно выставить фьюзы, соответсвующие размеру бутлодера для того, чтобы контроллер знал откуда его грузить.
+Фьюзы можно прошить до и после прошивки бутлодера.</p>
+<p>Фьюзы прошиты в <strong>Khazama AVR Programmer</strong> программе, удобна она тем, что можно выставить как флажками, так и в ней имеется подобие калькулятора фьюз, можно не запоминать биты, а просто выставить, то что должно быть по итогу.</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-59-13_khazama_fuse.png" alt></p>
+<p>Чтобы программатор USBasp работал в этой программе пришлось его прошить.   </p>
+<p><a href="https://tsibrov.blogspot.com/2018/10/usbasp-firmware-update.html" target="_blank" rel="noopener">https://tsibrov.blogspot.com/2018/10/usbasp-firmware-update.html</a></p>
+<p>После прошивки программатора, он стал работать в этой программе и перестал работать в <strong>avrdudeprog33</strong>.</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_12-29-29__usbasp_new_firmware.png" alt="В обновленной версии USBasp с avrdudeprog33 программой не читается"></p>
+<p>Так как это можно все сделать и без <strong>Khazama</strong>, то скорей всего ее не буду использовать, когда avrdude, через командную строку, позволяет это все сделать за один раз.</p>
+<!-- 
+Прошивка через Arduino: avrdude -c avrisp -P COM1 -b 19200 -p atmega8 -U flash:w:a8_1MHz_a1_dc.hex -U lfuse:w:0xa1:m -U hfuse:w:0xdc:m
+Прошивка через USBasp: avrdude -c usbasp -p atmega8 -U flash:w:a8_1MHz_a1_dc.hex -U lfuse:w:0xa1:m -U hfuse:w:0xdc:m
+-->
+
+
+
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_12-29-29__usbasp_old_firmware.png" alt></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Cформированная командная строка: </span><br><span class="line">avrdude.exe -p m8 -c usbasp -P usb -U calibration:r:calibration.hex:r</span><br><span class="line">avrdude.exe: warning: cannot <span class="built_in">set</span> sck period. please check <span class="keyword">for</span> usbasp firmware update.</span><br><span class="line">avrdude.exe: AVR device initialized <span class="keyword">and</span> ready to accept instructions</span><br><span class="line">Reading | ################################################## | <span class="number">100</span>% <span class="number">0.02</span>s</span><br><span class="line">avrdude.exe: Device signature = <span class="number">0x1e9307</span></span><br><span class="line">avrdude.exe: reading calibration memory:</span><br><span class="line">Reading | ################################################## | <span class="number">100</span>% <span class="number">0.03</span>s</span><br><span class="line">avrdude.exe: writing output file <span class="string">"calibration.hex"</span></span><br><span class="line">avrdude.exe: safemode: Fuses OK (E:FF, H:DC, L:E1)</span><br><span class="line">avrdude.exe done.  Thank you.</span><br></pre></td></tr></table></figure>
+
+<p>Соответсвие фьюзов в разных программах   </p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_12-38-33__fuse_in_diff_programs.png" alt></p>
+<p>Бутлодер был загружен тоже этой программой. После прошивки бутлодера можно будет загружать программу по UART.</p>
+<h3 id="Прошивка-программы-с-помощью-установленного-ранее-бутлодера"><a href="#Прошивка-программы-с-помощью-установленного-ранее-бутлодера" class="headerlink" title="Прошивка программы с помощью установленного ранее бутлодера"></a>Прошивка программы с помощью установленного ранее бутлодера</h3><p>Для получения полезной информации, стоит включить эти настройки в ArduinoIDE.</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-39-25__arduinoIDE_settings.png" alt></p>
+<p>Нужен скомпилированный файл прошивки, путь к нему можно подсмотреть в ArduinoIDE после компиляции, либо сделать экспорт этого файла через пункт меню в той же ArduinoIDE.</p>
+<p>В моем случае путь такой: c:\Users\admin\AppData\Local\Temp\arduino_build_138604\</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-36-04__get_test_hex_file.png" alt></p>
+<p><em>Весь путь с настройками должен быть в одну строку</em></p>
+<p>c:\arduino-1.8.8\hardware\tools\avr\bin\avrdude -Cc:\arduino-1.8.8\hardware\tools\avr\etc\avrdude.conf -v -patmega8 -carduino -b9600 -cstk500v2 -P\.\COM15 -D -Uflash:w:C:\DigitalReadSerialAtmega8Test.ino.hex:i</p>
+<p>C:\Users\admin\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/bin/avrdude -CC:\Users\admin\AppData\Local\Arduino15\packages\arduino\tools\avrdude\6.3.0-arduino9/etc/avrdude.conf -v -patmega8 -carduino -PCOM15 -b9600 -D -Uflash:w:C:\Users\admin\AppData\Local\Temp\arduino_build_138604/DigitalReadSerialAtmega8Test.ino.hex:i </p>
+<p>c:\arduino-1.8.8\hardware\tools\avr\bin\avrdude -Cc:\arduino-1.8.8\hardware\tools\avr\etc\avrdude.conf -v -patmega8 -carduino -b9600 -P\.\COM15 -D -Uflash:w:C:\DigitalReadSerialAtmega8Test.ino.hex:i</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-47-50__avrdude_upload.png" alt></p>
+<p>Если пин DTR не подключен, или сброс контроллера не происходит, удобно сперва зажать ресет на контроллере, и после запуска программы в командной строке, ресет отпустить.</p>
+<p><img src="/2019/12/28/micro-avr-atmega8-optiboot/2019-12-28_11-18-12_upload_code_using_arduinoIDE.png" alt="Если поставить дополнительные пакеты в ArduinoIDE, то можно прошить Atmega8 прямо из нее, скорость загрузки заданная в настройках 9600"></p>
+<h2 id="Оставшиеся-вопросы-для-последующего-изучения"><a href="#Оставшиеся-вопросы-для-последующего-изучения" class="headerlink" title="Оставшиеся вопросы для последующего изучения:"></a>Оставшиеся вопросы для последующего изучения:</h2><ol>
+<li>Как уйти от строки Cc:\arduino-1.8.8\hardware\tools\avr\etc\avrdude.conf в параметрах avrdude?</li>
+<li>Как скомпилировать бутлодер руками, и на любую скорость + частоту?</li>
+</ol>
+<h2 id="Полезные-ссылки"><a href="#Полезные-ссылки" class="headerlink" title="Полезные ссылки"></a>Полезные ссылки</h2><p><a href="https://github.com/euphy/polargraph/wiki/Uploading-precompiled-binary-hex-files" target="_blank" rel="noopener">https://github.com/euphy/polargraph/wiki/Uploading-precompiled-binary-hex-files</a></p>
+<!-- 
+Use AVRDUDE
+AVRDUDE is a tool used to upload firmware to AVR microprocessors, and it is included in the Arduino IDE so you already have it.
+
+Use a command line like:
+
+<path to arduino>/hardware/tools/avr/bin/avrdude
+-C<path to arduino>/hardware/tools/avr/etc/avrdude.conf
+-v -patmega2560 -carduino -b 115200 -cstk500v2
+-P<name of serial port>
+-D -Uflash:w:<path to hex file>:i
+For example, for me to upload the polargraph_server_a1 precompiled firmware on Windows, my commandline looks like:
+
+C:\dev\Arduino\hardware/tools/avr/bin/avrdude 
+-CC:\dev\Arduino\hardware/tools/avr/etc/avrdude.conf 
+-v -patmega2560 -carduino -b115200 -cstk500v2
+-P\\.\COM1 
+-D -Uflash:w:C:\Users\sandy_000\Documents\Arduino\polargraph_firmware\polargraph_server_a1\polargraph_server_a1.ino.hex:i
+And I got that from turning on verbose uploading mode in the Arduino IDE (File -> Preferences), and attempting to upload the sketch to a disconnected Arduino board. So you can do that to figure out what your command will look like: where your avrdude files are, things like that.
+
+It might look slightly different on Linux or MacOS.
+ -->
+
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="/2019/12/28/micro-avr-atmega8-optiboot/" data-id="ckhz3iy8n001h29te5smuktm7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "ZhVadim"
+        },
+        "headline": "Прошивка бутлодера в atmega8",
+        "image": "/2019/01/01/!images_common_files/post_logo_avr.png",
+        "keywords": "atmega8",
+        "genre": "Microcontroller avr",
+        "datePublished": "2019-12-28",
+        "dateCreated": "2019-12-28",
+        "dateModified": "2020-11-15",
+        "url": "/2019/12/28/micro-avr-atmega8-optiboot/",
+        "description": "Задача:  
+Записать загрузчик в атмега8.
+
+
+История:  
+После attiny13 появилось желание поработать с контроллером, помощнее, чем attiny13, но дешевле и чуть проще чем atmega328, которая используется
+на ",
+        "wordCount": 1132
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+        <!-- 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/12/28/micro-avr-atmega8-optiboot/index.html';
+
+        // this.page.url = '/2019/12/28/micro-avr-atmega8-optiboot/index.html';
+
+        this.page.identifier = '2019/12/28/micro-avr-atmega8-optiboot/index.html';
+        this.page.title = 'Прошивка бутлодера в atmega8';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="http://zhdan88vadim.github.io" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/04/10/whats-inside-guitar-pre-amp/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2019/11/12/soft-windows-virtualization/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Virtual Box</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+<div class="widget-wrap widget-list">
+    <h3 class="widget-title">Catalog</h3>
+    <div class="widget">
+        <div id="toc" class="toc-article">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Полезные-ссылки-по-бутлодерам"><span class="toc-number">1.</span> <span class="toc-text">Полезные ссылки по бутлодерам</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Установка-MiniCore"><span class="toc-number">2.</span> <span class="toc-text">Установка MiniCore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Прошивка-бутлодера-в-atmega8"><span class="toc-number">3.</span> <span class="toc-text">Прошивка бутлодера в atmega8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Прошивка-программы-с-помощью-установленного-ранее-бутлодера"><span class="toc-number">4.</span> <span class="toc-text">Прошивка программы с помощью установленного ранее бутлодера</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Оставшиеся-вопросы-для-последующего-изучения"><span class="toc-number"></span> <span class="toc-text">Оставшиеся вопросы для последующего изучения:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Полезные-ссылки"><span class="toc-number"></span> <span class="toc-text">Полезные ссылки</span></a>
+        </div>
+    </div>
+</div>
+
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/18/micro-home-opencv-gas-handler/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/07/18/micro-home-opencv-gas-handler/photo0.png)" alt="Распознаем положение ручек на газовой плите с opencv" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2020/07/18/micro-home-opencv-gas-handler/" class="title">Распознаем положение ручек на газовой плите с opencv</a></p>
+                            <p class="item-date"><time datetime="2020-07-18T09:21:34.000Z" itemprop="datePublished">2020-07-18</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2020/04/10/whats-inside-guitar-pre-amp/2020-04-10_17-42-33.png)" alt="Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/what-s-inside/">what's-inside</a></p>
+                            <p class="item-title"><a href="/2020/04/10/whats-inside-guitar-pre-amp/" class="title">Разбираем встроенные гитарные усилители (некоторые фото сделаны на утюг)</a></p>
+                            <p class="item-date"><time datetime="2020-04-10T10:47:21.000Z" itemprop="datePublished">2020-04-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/01/01/!images_common_files/post_logo_avr.png)" alt="Прошивка бутлодера в atmega8" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Microcontroller/">Microcontroller</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Microcontroller/avr/">avr</a></p>
+                            <p class="item-title"><a href="/2019/12/28/micro-avr-atmega8-optiboot/" class="title">Прошивка бутлодера в atmega8</a></p>
+                            <p class="item-date"><time datetime="2019-12-28T10:30:19.000Z" itemprop="datePublished">2019-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/12/soft-windows-virtualization/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/12/soft-windows-virtualization/2019-11-12-11-14-40_virtbox_0.png)" alt="Virtual Box" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/12/soft-windows-virtualization/" class="title">Virtual Box</a></p>
+                            <p class="item-date"><time datetime="2019-11-12T08:14:25.000Z" itemprop="datePublished">2019-11-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/11/06/programs-useful/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/2019/11/06/programs-useful/2019-11-14-16-31-25_share_x.png)" alt="Список полезных программ" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2019/11/06/programs-useful/" class="title">Список полезных программ</a></p>
+                            <p class="item-date"><time datetime="2019-11-06T14:22:59.000Z" itemprop="datePublished">2019-11-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/House/">House</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/House/electricity/">electricity</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/House/repairs/">repairs</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/">MLB</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/">American League</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/MLB/American-League/New-York-Yankees/">New York Yankees</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/">Microcontroller</a><span class="category-list-count">14</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/avr/">avr</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Microcontroller/wifi/">wifi</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/">Overview-china</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Overview-china/electricity/">electricity</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Rivalries/">Rivalries</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/">Sports</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sports/Baseball/">Baseball</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/">angular2</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/">form</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Web/angular2/form/validation/">validation</a><span class="category-list-count">2</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/dev/">dev</a><span class="category-list-count">7</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/pcb/">pcb</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/what-s-inside/">what's-inside</a><span class="category-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/angular2/">angular2</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/arduino/">arduino</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atmega8/">atmega8</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/attiny/">attiny</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/battery/">battery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/camera/">camera</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dev/">dev</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/eng/">eng</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp32/">esp32</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/esp8266/">esp8266</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/house/">house</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/links/">links</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/">opencv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/overview-china/">overview-china</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pcb/">pcb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/">raspberry-pi</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/repairs/">repairs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sensor/">sensor</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/smchin/">smchin</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/angular2/" style="font-size: 17.5px;">angular2</a> <a href="/tags/arduino/" style="font-size: 12.5px;">arduino</a> <a href="/tags/atmega8/" style="font-size: 12.5px;">atmega8</a> <a href="/tags/attiny/" style="font-size: 20px;">attiny</a> <a href="/tags/battery/" style="font-size: 10px;">battery</a> <a href="/tags/camera/" style="font-size: 12.5px;">camera</a> <a href="/tags/dev/" style="font-size: 10px;">dev</a> <a href="/tags/eng/" style="font-size: 10px;">eng</a> <a href="/tags/esp32/" style="font-size: 12.5px;">esp32</a> <a href="/tags/esp8266/" style="font-size: 12.5px;">esp8266</a> <a href="/tags/house/" style="font-size: 12.5px;">house</a> <a href="/tags/links/" style="font-size: 10px;">links</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/overview-china/" style="font-size: 17.5px;">overview-china</a> <a href="/tags/pcb/" style="font-size: 10px;">pcb</a> <a href="/tags/raspberry-pi/" style="font-size: 10px;">raspberry-pi</a> <a href="/tags/repairs/" style="font-size: 10px;">repairs</a> <a href="/tags/sensor/" style="font-size: 12.5px;">sensor</a> <a href="/tags/smchin/" style="font-size: 15px;">smchin</a> <a href="/tags/test/" style="font-size: 10px;">test</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 ZhVadim</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    <!-- 
+    <script>
+    var disqus_shortname = 'http-zhdan88vadim-github-io';
+    
+    
+    var disqus_url = '/2019/12/28/micro-avr-atmega8-optiboot/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+ -->
+
+
+
+    <section id="comments">
+     
+    <div id="disqus_thread"></div>
+    <script>
+
+    var disqus_config = function () {
+        this.page.url = 'https://zhdan88vadim.github.io/2019/12/28/micro-avr-atmega8-optiboot/index.html';
+
+        // this.page.url = '/2019/12/28/micro-avr-atmega8-optiboot/index.html';
+
+        this.page.identifier = '2019/12/28/micro-avr-atmega8-optiboot/index.html';
+        this.page.title = 'Прошивка бутлодера в atmega8';
+    };
+     
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://http-zhdan88vadim-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+    
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
