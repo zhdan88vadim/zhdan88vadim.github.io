@@ -14,7 +14,7 @@
             min-height: 100vh;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         .card {
@@ -44,7 +44,7 @@
         }
         .image-box {
             flex: 1;
-            min-width: 300px;
+            min-width: 400px;
             text-align: center;
         }
         canvas, img {
@@ -52,20 +52,6 @@
             border-radius: 10px;
             border: 2px solid #e0e0e0;
             background: white;
-        }
-        button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            margin: 10px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s;
-        }
-        button:hover {
-            transform: translateY(-2px);
         }
         .result-text {
             font-size: 24px;
@@ -116,6 +102,49 @@
         .hidden {
             display: none;
         }
+        .letter-debug {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            display: inline-block;
+            vertical-align: top;
+            background: white;
+            border-radius: 8px;
+            min-width: 250px;
+        }
+        .debug-image {
+            max-width: 100px;
+            max-height: 100px;
+            border: 1px solid #667eea;
+            margin: 5px;
+        }
+        .top3-item {
+            margin: 3px 0;
+            padding: 2px 5px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .top3-letter {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .top3-bar {
+            background: #e0e0e0;
+            border-radius: 3px;
+            overflow: hidden;
+            height: 14px;
+            margin-top: 2px;
+        }
+        .top3-fill {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            font-size: 10px;
+            line-height: 14px;
+            padding-right: 3px;
+            color: white;
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -148,6 +177,11 @@
         <h3>📝 Распознанный текст:</h3>
         <div id="recognizedText" class="result-text"></div>
         <div id="lettersDetail"></div>
+    </div>
+    
+    <div class="card" id="debugCard" style="display: none;">
+        <h3>🔍 Отладка: вырезанные области и результат предобработки</h3>
+        <div id="debugContent"></div>
     </div>
 </div>
 
@@ -190,7 +224,7 @@
         return expValues.map(e => e / sumExp);
     }
     
-    // Функции для предобработки (ТЕ ЖЕ САМЫЕ, что и в рисованной версии)
+    // Функция поиска bounding box буквы
     function findBoundingBox(imageData, threshold=0.5) {
         let minX = 64, minY = 64, maxX = 0, maxY = 0;
         let hasPixel = false;
@@ -212,6 +246,7 @@
         return { x: minX, y: minY, w: maxX - minX, h: maxY - minY };
     }
     
+    // Функция вырезания буквы с отступом
     function extractLetterWithMargin(imageData, margin=15) {
         const bbox = findBoundingBox(imageData);
         if (!bbox) return null;
@@ -231,10 +266,17 @@
         return { data: cropped, w: endX - startX, h: endY - startY };
     }
     
-    // ТА ЖЕ САМАЯ предобработка, что и для рисованной буквы
-    function preprocessLetterImage(letterCanvas_64x64) {
+    // Полная предобработка (как в рабочем примере с рисованием)
+    function preprocessImage(roiCanvas) {
+        // 1. Получаем данные с canvas и изменяем размер до 64x64
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = 64;
+        tempCanvas.height = 64;
+        const tempCtx = tempCanvas.getContext('2d');
+        tempCtx.drawImage(roiCanvas, 0, 0, roiCanvas.width, roiCanvas.height, 0, 0, 64, 64);
+        
         // Получаем изображение в градациях серого
-        let imageData = letterCanvas_64x64.getImageData(0, 0, 64, 64);
+        let imageData = tempCtx.getImageData(0, 0, 64, 64);
         let grayData = new Array(64 * 64);
         
         for (let i = 0; i < imageData.data.length; i += 4) {
@@ -242,16 +284,16 @@
             grayData[i/4] = gray;
         }
         
-        // Инвертируем (Invert)
-        for (let i = 0; i < grayData.length; i++) {
-            grayData[i] = 1 - grayData[i];
-        }
+        // 2. Инвертируем (Invert)
+        // for (let i = 0; i < grayData.length; i++) {
+        //     grayData[i] = 1 - grayData[i];
+        // }
         
-        // ExtractLetterWithMargin
+        // 3. ExtractLetterWithMargin
         const extracted = extractLetterWithMargin(grayData, 15);
         if (!extracted) return null;
         
-        // SquarePad
+        // 4. SquarePad
         const size = Math.max(extracted.w, extracted.h);
         const squared = new Array(size * size).fill(1.0);
         
@@ -266,7 +308,7 @@
             }
         }
         
-        // Resize обратно до 64x64
+        // 5. Resize обратно до 64x64
         const resized = new Array(64 * 64);
         const scale = size / 64;
         
@@ -282,33 +324,59 @@
             }
         }
         
-        // Normalize (mean=0.5, std=0.5)
+        // 6. Normalize (mean=0.5, std=0.5)
         const normalized = new Float32Array(1 * 1 * 64 * 64);
         for (let i = 0; i < resized.length; i++) {
             normalized[i] = (resized[i] - 0.5) / 0.5;
         }
         
-        return new ort.Tensor('float32', normalized, [1, 1, 64, 64]);
+        return { tensor: new ort.Tensor('float32', normalized, [1, 1, 64, 64]), finalImage: resized };
     }
     
-    // Сегментация букв на изображении
-    function segmentLetters(grayMat, minArea = 450, maxArea = 7000) {
+    // Преобразование Mat в canvas (через cv.imshow)
+    function matToCanvas(mat) {
+        const canvas = document.createElement('canvas');
+        canvas.width = mat.cols;
+        canvas.height = mat.rows;
+        try {
+            cv.imshow(canvas, mat);
+        } catch(e) {
+            console.error('matToCanvas error:', e);
+        }
+        return canvas;
+    }
+    
+    // Визуализация финального изображения (после предобработки)
+    function visualizeFinalImage(finalImageData) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 64;
+        canvas.height = 64;
+        const ctx = canvas.getContext('2d');
+        const imageData = ctx.createImageData(64, 64);
+        
+        for (let i = 0; i < finalImageData.length; i++) {
+            const val = finalImageData[i] * 255;
+            imageData.data[i * 4] = val;
+            imageData.data[i * 4 + 1] = val;
+            imageData.data[i * 4 + 2] = val;
+            imageData.data[i * 4 + 3] = 255;
+        }
+        ctx.putImageData(imageData, 0, 0);
+        return canvas;
+    }
+    
+    // Сегментация букв
+    function segmentLetters(grayMat, minArea = 300, maxArea = 8000) {
         const binary = new cv.Mat();
         cv.adaptiveThreshold(grayMat, binary, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 11, 2);
         
         const kernel = cv.getStructuringElement(cv.MORPH_RECT, new cv.Size(3, 3));
         const closed = new cv.Mat();
-        cv.morphologyEx(binary, closed, cv.MORPH_CLOSE, kernel, new cv.Point(-1, -1), 1);
-        
-        const opened = new cv.Mat();
-        cv.morphologyEx(closed, opened, cv.MORPH_OPEN, kernel, new cv.Point(-1, -1), 1);
-        
-        const dilated = new cv.Mat();
-        cv.dilate(opened, dilated, kernel, new cv.Point(-1, -1), 2);
+        cv.morphologyEx(binary, closed, cv.MORPH_CLOSE, kernel, new cv.Point(-1, -1), 2);
         
         let contours = new cv.MatVector();
         let hierarchy = new cv.Mat();
-        cv.findContours(dilated, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
+        cv.findContours(closed, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
         
         const letterBoxes = [];
         
@@ -321,9 +389,9 @@
             const rect = cv.boundingRect(contour);
             const aspectRatio = rect.width / rect.height;
             
-            if (aspectRatio < 0.3 || aspectRatio > 2.5) continue;
+            if (aspectRatio < 0.2 || aspectRatio > 3.0) continue;
             
-            const padding = 8;
+            const padding = 10;
             const x = Math.max(0, rect.x - padding);
             const y = Math.max(0, rect.y - padding);
             const w = Math.min(grayMat.cols - x, rect.width + 2 * padding);
@@ -337,101 +405,239 @@
         binary.delete();
         kernel.delete();
         closed.delete();
-        opened.delete();
-        dilated.delete();
         contours.delete();
         hierarchy.delete();
         
         return letterBoxes;
     }
-    
-    // Распознавание одной буквы с ТОЙ ЖЕ предобработкой
-    async function recognizeLetter(letterRoi) {
-        // Конвертируем OpenCV Mat в canvas 64x64
-        const roiWidth = letterRoi.cols;
-        const roiHeight = letterRoi.rows;
+
+    // Утолщение буквы через OpenCV
+    function thickenLetterWithOpenCV(roiCanvas) {
+        // Конвертируем canvas в Mat
+        let mat = cv.imread(roiCanvas);
+        let gray = new cv.Mat();
+        cv.cvtColor(mat, gray, cv.COLOR_RGBA2GRAY);
         
-        const letterCanvas = document.createElement('canvas');
-        letterCanvas.width = roiWidth;
-        letterCanvas.height = roiHeight;
-        const letterCtx = letterCanvas.getContext('2d');
+        // Бинаризация
+        let binary = new cv.Mat();
+        cv.threshold(gray, binary, 127, 255, cv.THRESH_BINARY);
         
-        const imgData = new ImageData(roiWidth, roiHeight);
-        const data = letterRoi.data;
+        // Морфологическое расширение (утолщение)
+        let kernel = cv.getStructuringElement(cv.MORPH_ELLIPSE, new cv.Size(5, 5));
+        let dilated = new cv.Mat();
+        // cv.dilate(binary, dilated, kernel, new cv.Point(-1, -1), 2); // iterations=2 для большей жирности
+
+        cv.erode(binary, dilated, kernel, new cv.Point(-1, -1), 1); // iterations=2 для большей жирности
         
-        for (let i = 0; i < roiWidth * roiHeight; i++) {
-            const pixelValue = data[i * 4];
-            imgData.data[i * 4] = pixelValue;
-            imgData.data[i * 4 + 1] = pixelValue;
-            imgData.data[i * 4 + 2] = pixelValue;
-            imgData.data[i * 4 + 3] = 255;
-        }
-        letterCtx.putImageData(imgData, 0, 0);
+        // Конвертируем обратно в canvas
+        cv.imshow(roiCanvas, dilated);
         
-        // Создаем canvas 64x64 с белым фоном и рисуем букву по центру
-        const tempCanvas = document.createElement('canvas');
-        tempCanvas.width = 64;
-        tempCanvas.height = 64;
-        const tempCtx = tempCanvas.getContext('2d');
+        // Очистка
+        mat.delete();
+        gray.delete();
+        binary.delete();
+        kernel.delete();
+        dilated.delete();
         
-        tempCtx.fillStyle = 'white';
-        tempCtx.fillRect(0, 0, 64, 64);
-        
-        const maxSize = 50;
-        const scale = Math.min(maxSize / Math.max(roiWidth, roiHeight), 1);
-        const scaledW = Math.max(1, Math.floor(roiWidth * scale));
-        const scaledH = Math.max(1, Math.floor(roiHeight * scale));
-        const offsetX = (64 - scaledW) / 2;
-        const offsetY = (64 - scaledH) / 2;
-        
-        tempCtx.drawImage(letterCanvas, 0, 0, roiWidth, roiHeight, offsetX, offsetY, scaledW, scaledH);
-        
-        // Применяем ТУ ЖЕ предобработку, что и для рисованной буквы
-        const inputTensor = preprocessLetterImage(tempCtx);
-        if (!inputTensor) return { letter: '?', confidence: 0 };
-        
-        const results = await session.run({ input: inputTensor });
-        const logits = results.output.data;
-        const probabilities = softmax(Array.from(logits));
-        const topIdx = probabilities.reduce((maxIdx, p, idx) => p > probabilities[maxIdx] ? idx : maxIdx, 0);
-        
-        return {
-            letter: classNames[topIdx],
-            confidence: probabilities[topIdx] * 100
-        };
+        return roiCanvas;
     }
-    
+
+    function preprocessImageOpenCV(imageMat) {
+        let gray;
+        
+        // 1. Конвертируем в grayscale если нужно
+        if (imageMat.channels() === 3) {
+            gray = new cv.Mat();
+            cv.cvtColor(imageMat, gray, cv.COLOR_RGBA2GRAY);
+        } else {
+            gray = imageMat.clone();
+        }
+        
+        // 2. Размытие по Гауссу
+        let blurred = new cv.Mat();
+        cv.GaussianBlur(imageMat, blurred, new cv.Size(5, 5), 0);
+        // cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
+        
+        // 3. Адаптивная бинаризация
+        let binary = new cv.Mat();
+        cv.adaptiveThreshold(
+            blurred, binary, 255, 
+            cv.ADAPTIVE_THRESH_GAUSSIAN_C, 
+            cv.THRESH_BINARY_INV, 11, 2
+        );
+        
+        // 4. Морфологические операции
+        let kernel = cv.getStructuringElement(cv.MORPH_RECT, new cv.Size(3, 3));
+        
+        let closed = new cv.Mat();
+        cv.morphologyEx(binary, closed, cv.MORPH_CLOSE, kernel);
+        
+        let opened = new cv.Mat();
+        cv.morphologyEx(closed, opened, cv.MORPH_OPEN, kernel);
+        
+        let dilated = new cv.Mat();
+        cv.dilate(opened, dilated, kernel, new cv.Point(-1, -1), 2);
+        
+        // ✅ ОЧИЩАЕМ ВСЕ ВРЕМЕННЫЕ Mat'ы
+        blurred.delete();
+        // binary.delete();
+        kernel.delete();
+        closed.delete();
+        opened.delete();
+        // dilated.delete(); // НЕ УДАЛЯЕМ - он нужен для возврата
+        
+        // ✅ ВОЗВРАЩАЕМ gray И dilated (НЕ УДАЛЯЙТЕ ИХ)
+        return { gray: gray, binary: dilated };
+    }
+
+
     async function recognizeImage(imageMat) {
         updateStatus('Обработка изображения...', 20);
         
         let gray = new cv.Mat();
         cv.cvtColor(imageMat, gray, cv.COLOR_RGBA2GRAY);
+
+        // 2. Размытие по Гауссу
+        let blurred = new cv.Mat();
+        cv.GaussianBlur(gray, blurred, new cv.Size(5, 5), 0);
         
+        // 3. Адаптивная бинаризация
+        let binary = new cv.Mat();
+        cv.adaptiveThreshold(
+            blurred, binary, 255, 
+            cv.ADAPTIVE_THRESH_GAUSSIAN_C, 
+            cv.THRESH_BINARY_INV, 11, 2
+        );
+
+
+        // 4. Морфологические операции
+        let kernel = cv.getStructuringElement(cv.MORPH_RECT, new cv.Size(3, 3));
+        
+        let closed = new cv.Mat();
+        cv.morphologyEx(binary, closed, cv.MORPH_CLOSE, kernel);
+        
+        let opened = new cv.Mat();
+        cv.morphologyEx(closed, opened, cv.MORPH_OPEN, kernel);
+        
+        let dilated = new cv.Mat();
+        cv.dilate(opened, dilated, kernel, new cv.Point(-1, -1), 2);
+
+
+        console.log('before', gray.channels());
+        debugger
+        
+        // const { gray, binary } = preprocessImageOpenCV(imageMat)
+        
+        console.log('after');
+
         updateStatus('Поиск букв на изображении...', 40);
-        const letterBoxes = segmentLetters(gray);
+        const letterBoxes = segmentLetters(dilated);
         
         if (letterBoxes.length === 0) {
             updateStatus('⚠️ Буквы не найдены.', 100);
             gray.delete();
+            binary.delete();
             return [];
         }
         
         updateStatus(`Найдено ${letterBoxes.length} букв, распознавание...`, 60);
         
         const results = [];
+        const debugDiv = document.getElementById('debugContent');
+        if (debugDiv) debugDiv.innerHTML = '';
         
         for (let i = 0; i < letterBoxes.length; i++) {
             const box = letterBoxes[i];
             const { x, y, w, h } = box.bbox;
             
-            const letterRoi = gray.roi(new cv.Rect(x, y, w, h));
-            const recognition = await recognizeLetter(letterRoi);
+            console.log(`Буква ${i+1}: (${x},${y}) ${w}x${h}`);
+            
+            // Вырезаем область
+            const letterRoi = dilated.roi(new cv.Rect(x, y, w, h));
+            
+            // Создаем canvas из ROI (через cv.imshow)
+            const roiCanvas = matToCanvas(letterRoi);
+            roiCanvas.style.maxWidth = '100px';
+            roiCanvas.style.maxHeight = '100px';
+            roiCanvas.style.border = '1px solid #667eea';
+            roiCanvas.style.margin = '5px';
+
+            console.log('thickenLetterWithOpenCV');
+            
+            thickenLetterWithOpenCV(roiCanvas);
+            
+            // Применяем предобработку (как в рабочем примере с рисованием)
+            const processed = preprocessImage(roiCanvas);
+            
+            if (!processed) {
+                console.log(`Буква ${i+1}: ошибка предобработки`);
+                letterRoi.delete();
+                continue;
+            }
+            
+            // Распознаем
+            const results_inf = await session.run({ input: processed.tensor });
+            const logits = results_inf.output.data;
+            const probabilities = softmax(Array.from(logits));
+            
+            // Получаем топ-3
+            const top3 = probabilities
+                .map((p, idx) => ({ p, idx }))
+                .sort((a, b) => b.p - a.p)
+                .slice(0, 3);
+            
+            const topLetter = classNames[top3[0].idx];
+            const topConfidence = top3[0].p * 100;
+            
+            // Визуализируем финальное изображение (после предобработки)
+            const finalCanvas = visualizeFinalImage(processed.finalImage);
+            finalCanvas.style.maxWidth = '100px';
+            finalCanvas.style.maxHeight = '100px';
+            finalCanvas.style.border = '1px solid #ff9800';
+            finalCanvas.style.margin = '5px';
+            
+            // Формируем HTML для топ-3
+            let top3Html = '<div style="margin-top: 8px;"><strong>Топ-3:</strong></div>';
+            for (let t of top3) {
+                const letter = classNames[t.idx];
+                const percent = (t.p * 100).toFixed(1);
+                top3Html += `
+                    <div class="top3-item">
+                        <span class="top3-letter">${letter}</span>
+                        <span style="float: right;">${percent}%</span>
+                        <div class="top3-bar">
+                            <div class="top3-fill" style="width: ${percent}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Добавляем в отладку
+            if (debugDiv) {
+                const letterDebug = document.createElement('div');
+                letterDebug.className = 'letter-debug';
+                letterDebug.innerHTML = `
+                    <div><strong>Буква ${i+1}</strong> (исходный размер: ${w}x${h})</div>
+                    <div style="display: inline-block; text-align: center; margin: 5px;">
+                        <div>Вырезанная область</div>
+                        <img src="${roiCanvas.toDataURL()}" class="debug-image">
+                    </div>
+                    <div style="display: inline-block; text-align: center; margin: 5px;">
+                        <div>После предобработки</div>
+                        <img src="${finalCanvas.toDataURL()}" class="debug-image">
+                    </div>
+                    <div style="margin-top: 5px;">✅ Распознано: <strong style="font-size: 18px; color: #667eea;">${topLetter}</strong> (${topConfidence.toFixed(1)}%)</div>
+                    ${top3Html}
+                `;
+                debugDiv.appendChild(letterDebug);
+            }
             
             results.push({
                 index: i,
                 bbox: box.bbox,
-                letter: recognition.letter,
-                confidence: recognition.confidence
+                letter: topLetter,
+                confidence: topConfidence,
+                top3: top3.map(t => ({ letter: classNames[t.idx], confidence: t.p * 100 }))
             });
             
             const progress = 60 + (i / letterBoxes.length) * 30;
@@ -439,8 +645,21 @@
             
             letterRoi.delete();
         }
-        
+    
         gray.delete();
+        binary.delete();
+
+  
+        blurred.delete();
+        kernel.delete();
+        closed.delete();
+        opened.delete();
+        dilated.delete();        
+        
+        if (debugDiv && results.length > 0) {
+            document.getElementById('debugCard').style.display = 'block';
+        }
+        
         return results;
     }
     
@@ -450,8 +669,8 @@
         canvas.height = originalMat.rows;
         const ctx = canvas.getContext('2d');
         
-        const imgData = new ImageData(new Uint8ClampedArray(originalMat.data), originalMat.cols, originalMat.rows);
-        ctx.putImageData(imgData, 0, 0);
+        const displayCanvas = matToCanvas(originalMat);
+        ctx.drawImage(displayCanvas, 0, 0);
         
         for (const res of results) {
             const { x, y, w, h } = res.bbox;
@@ -487,6 +706,19 @@
             `;
         }
         lettersHtml += '</div>';
+        
+        // Добавляем топ-3 для всего текста
+        lettersHtml += '<div style="margin-top: 20px;"><strong>📊 Детали по буквам:</strong></div>';
+        for (const res of results) {
+            lettersHtml += `<div style="margin-top: 10px;"><strong>Буква ${res.index + 1}:</strong> ${res.letter} (${res.confidence.toFixed(1)}%)`;
+            lettersHtml += `<div style="font-size: 12px; color: #666;">Топ-3: `;
+            for (let i = 0; i < res.top3.length; i++) {
+                lettersHtml += `${res.top3[i].letter} (${res.top3[i].confidence.toFixed(1)}%)`;
+                if (i < res.top3.length - 1) lettersHtml += ', ';
+            }
+            lettersHtml += `</div></div>`;
+        }
+        
         document.getElementById('lettersDetail').innerHTML = lettersHtml;
         document.getElementById('resultCard').style.display = 'block';
     }
@@ -504,8 +736,10 @@
             }
         }
     }
-    
+        
     async function loadImage(event) {
+        console.log('loadImage');
+        
         if (!cvReady) {
             alert('OpenCV еще не загружен. Подождите...');
             return;
@@ -521,27 +755,44 @@
         
         const img = new Image();
         img.onload = async () => {
-            updateStatus('Обработка...', 0);
-            
-            const originalCanvas = document.getElementById('originalCanvas');
-            originalCanvas.width = img.width;
-            originalCanvas.height = img.height;
-            const ctx = originalCanvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-            
-            let src = cv.imread(originalCanvas);
-            const results = await recognizeImage(src);
-            
-            if (results.length > 0) {
-                drawResults(src, results);
-                displayTextResults(results);
-                updateStatus(`✅ Распознано ${results.length} букв`, 100);
-            } else {
-                updateStatus('❌ Буквы не найдены', 100);
-                document.getElementById('resultCard').style.display = 'none';
+            try {
+                updateStatus('Обработка...', 0);
+                
+                const originalCanvas = document.getElementById('originalCanvas');
+                originalCanvas.width = img.width;
+                originalCanvas.height = img.height;
+                const ctx = originalCanvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                
+                let src = null;
+                try {
+                    src = cv.imread(originalCanvas);
+                    const results = await recognizeImage(src);
+                    
+                    if (results.length > 0) {
+                        drawResults(src, results);
+                        displayTextResults(results);
+                        updateStatus(`✅ Распознано ${results.length} букв`, 100);
+                    } else {
+                        updateStatus('❌ Буквы не найдены', 100);
+                        document.getElementById('resultCard').style.display = 'none';
+                        document.getElementById('debugCard').style.display = 'none';
+                    }
+                } catch (err) {
+                    console.error('Ошибка при распознавании:', err);
+                    updateStatus(`❌ Ошибка распознавания: ${err.message}`, 0);
+                    document.getElementById('resultCard').style.display = 'none';
+                    document.getElementById('debugCard').style.display = 'none';
+                } finally {
+                    if (src && !src.isDeleted()) {
+                        src.delete();
+                    }
+                }
+                
+            } catch (err) {
+                console.error('Ошибка при загрузке изображения:', err);
+                updateStatus(`❌ Ошибка: ${err.message}`, 0);
             }
-            
-            src.delete();
         };
         img.src = URL.createObjectURL(file);
     }
@@ -568,6 +819,8 @@
     });
     
     async function init() {
+        console.log('init');
+
         updateStatus('Загрузка модели...', 10);
         const modelLoaded = await loadModel();
         if (modelLoaded && cvReady) {
@@ -581,7 +834,11 @@
     if (typeof cv !== 'undefined' && cv.Mat) {
         cvReady = true;
         init();
+        console.log('001');
+        
     }
+
+    console.log('002');
 </script>
 <script src="https://docs.opencv.org/4.8.0/opencv.js" onload="onOpenCVReady()"></script>
 </body>
