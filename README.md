@@ -262,7 +262,7 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
 - **Specialist Degree** — Faculty of Information Systems and Technologies  
   *Belarusian State Technological University*
 
-- **Bachelor's Degree** — Faculty of Installation and Repair of Electronic Equipment  
+- **Specialist Degree** — Faculty of Installation and Repair of Electronic Equipment  
   *Minsk State Polytechnic College*
 
 ---
