@@ -1,10 +1,16 @@
 # Vadim Zhdan
-**SOFTWARE DEVELOPER**  
-*Currently transitioning to Machine Learning & Data Science*
+**Python Backend Engineer, AI Integration**
 
- [LinkedIn](https://www.linkedin.com/in/vadim-zhdan-4a478293/)
----
+## About
 
+Fullstack developer with experience building web applications: C# on the backend, Angular on the frontend. Transitioned to Python to get closer to machine learning and the integration of models into business processes.
+
+I've studied the architecture of many open-source projects on GitHub, and I have my own as well. Worked with the  stack: Python, FastAPI, Pydantic, Celery, Ollama, LlamaIndex, Docker Compose, OpenCV, Pytorch.
+
+Looking for Python projects where I can apply my skills.
+
+
+<!-- 
 ## Career Transition: Frontend → Machine Learning
 
 **Why this transition:**
@@ -22,16 +28,18 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
 **Currently focused on:**
 - Python for Data Science (NumPy, Pandas, Matplotlib)
 - Machine Learning fundamentals (scikit-learn)
-- Deep Learning & Computer Vision (OpenCV, neural networks — in progress)
+- Deep Learning & Computer Vision (OpenCV, neural networks — in progress) 
+
+- -->
 
 ## 🛠 Core Skills
 
-- **Machine Learning:** Python, scikit-learn, Pandas, NumPy *(in progress)*
-- **Languages & Frameworks:** TypeScript, HTML5, CSS3, JavaScript, C#, C++, Python *(learning)*
-- **Frontend:** Angular 12+, AngularJS, ReactJS, NodeJS, jQuery, SCSS, Bootstrap
-- **Databases:** MS SQL 2012, Oracle 11.2
-- **Tools & Platforms:** TFS, Visual Studio 2025, Android Studio, webpack, npm, Arduino IDE, platformIO
-
+- **Backend & APIs:** Python, FastAPI, Pydantic, Celery, Redis, Node.js, C#
+- **AI & ML:** PyTorch, OpenCV, scikit-learn, YOLO, Ollama, LlamaIndex, RAG, LLM, Qdrant, Vector DB, Pandas
+- **Frontend:** TypeScript, Angular 12+, AngularJS, ReactJS, JavaScript, HTML5, CSS3, SCSS, Bootstrap
+- **Databases:** PostgreSQL, MS SQL 2012, Oracle 11.2
+- **DevOps & Tools:** Docker, Docker Compose, Visual Studio 2025, Android Studio, webpack, npm, Arduino IDE, PlatformIO
+- **Languages:** Python, TypeScript, JavaScript, C#, C++
 ---
 
 ## 🧰 Other Skills
@@ -48,6 +56,10 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
 ---
 
 ## 💼 Employment History
+
+- **Self-study: Python & Machine Learning**  
+  `January 2026 – present`
+  Focused on Python backend, ML, LLM/RAG, and Computer Vision.
 
 - **Coherent Solutions** — *Minsk, Belarus*  
   `August 2015 – March 2026`
@@ -266,3 +278,7 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
   *Minsk State Polytechnic College*
 
 ---
+
+## Contacts
+
+[LinkedIn](https://www.linkedin.com/in/vadim-zhdan-4a478293/)
