@@ -58,7 +58,7 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
 ## 💼 Employment History
 
 - **Self-study: Python & Machine Learning**  
-  `January 2026 – present`
+  `January 2026 – present`     
   Focused on Python backend, ML, LLM/RAG, and Computer Vision.
 
 - **Coherent Solutions** — *Minsk, Belarus*  
