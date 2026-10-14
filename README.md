@@ -39,7 +39,9 @@ Now I'm entering the next stage of my growth. After years of moving data from ba
 - **Frontend:** TypeScript, Angular 12+, AngularJS, ReactJS, JavaScript, HTML5, CSS3, SCSS, Bootstrap
 - **Databases:** PostgreSQL, MS SQL 2012, Oracle 11.2
 - **DevOps & Tools:** Docker, Docker Compose, Visual Studio 2025, Android Studio, webpack, npm, Arduino IDE, PlatformIO
-- **Languages:** Python, TypeScript, JavaScript, C#, C++
+- **Languages:** Python, TypeScript, JavaScript, C#, C++     
+
+    
 ---
 
 ## 🧰 Other Skills
